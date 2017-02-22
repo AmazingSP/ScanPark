@@ -28,7 +28,6 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddMvc();
             services.AddEntityFrameworkSqlite().AddDbContext<DataBaseContext>();
         }
@@ -46,7 +45,7 @@ namespace Server
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Admin/Error");
             }
 
             app.UseStaticFiles();
@@ -55,7 +54,7 @@ namespace Server
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

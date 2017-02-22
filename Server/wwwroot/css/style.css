@@ -1,4 +1,6 @@
-﻿/* Roboto 400 */
+﻿@import url(materialize.css);
+
+/* Roboto 400 */
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -7,6 +9,7 @@
        url('../fonts/roboto-v15-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('../fonts/roboto-v15-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+
 /* Roboto 700 */
 @font-face {
   font-family: 'Roboto';
@@ -23,6 +26,14 @@
   font-style: normal;
   font-weight: 400;
   src: local('Material Icons'), local('MaterialIcons-Regular'), url('../fonts/material.woff2') format('woff2');
+}
+
+/* Kennzeichen Schrift */
+@font-face {
+  font-family: 'Euro Plate';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Euro Plate'), local('Euro Plate'), url('../fonts/EuroPlate.woff2') format('woff2');
 }
 
 .material-icons {
@@ -42,7 +53,6 @@
 }
 
 /* Navbar ====================================== */
-@import url(materialize.css);
 .navbar {
   font-family: "Roboto", sans-serif;
   -webkit-border-radius: 0;
@@ -1939,7 +1949,7 @@
     color: #fff !important; }
 
 .bg-cyan {
-  background-color: #00BCD4 !important;
+  background-color: #00bcd4 !important;
   color: #fff; }
   .bg-cyan .content .text,
   .bg-cyan .content .number {
@@ -2058,7 +2068,7 @@
   color: #03A9F4 !important; }
 
 .col-cyan {
-  color: #00BCD4 !important; }
+  color: #2196F3 !important; }
 
 .col-teal {
   color: #009688 !important; }
@@ -2100,20 +2110,6 @@
   color: #ffffff !important; }
 
 /* Custom Animate ============================== */
-@-ms-keyframes spin {
-  from {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-
 @-moz-keyframes spin {
   from {
     -moz-transform: rotate(0deg);
@@ -2329,7 +2325,7 @@
   .demo-choose-skin .light-blue {
     background-color: #03A9F4; }
   .demo-choose-skin .cyan {
-    background-color: #00BCD4; }
+    background-color: #2196F3; }
   .demo-choose-skin .teal {
     background-color: #009688; }
   .demo-choose-skin .green {
@@ -2851,10 +2847,10 @@ section.content {
 /* Card ======================================== */
 .card {
   background: #fff;
-  min-height: 50px;
+  min-height: 527px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   position: relative;
-  margin-bottom: 30px; }
+  margin-bottom: 0px; }
   .card .card-inside-title {
     margin-top: 25px;
     margin-bottom: 15px;
@@ -3490,8 +3486,8 @@ section.content {
   border-bottom: 2px solid #03A9F4; }
 
 [type="checkbox"]:checked.chk-col-cyan + label:before {
-  border-right: 2px solid #00BCD4;
-  border-bottom: 2px solid #00BCD4; }
+  border-right: 2px solid #2196F3;
+  border-bottom: 2px solid #2196F3; }
 
 [type="checkbox"]:checked.chk-col-teal + label:before {
   border-right: 2px solid #009688;
@@ -3586,8 +3582,8 @@ section.content {
   background-color: #03A9F4; }
 
 [type="checkbox"].filled-in:checked.chk-col-cyan + label:after {
-  border: 2px solid #00BCD4;
-  background-color: #00BCD4; }
+  border: 2px solid #2196F3;
+  background-color: #2196F3; }
 
 [type="checkbox"].filled-in:checked.chk-col-teal + label:after {
   border: 2px solid #009688;
@@ -3684,8 +3680,8 @@ section.content {
   border-color: #03A9F4; }
 
 [type="radio"].radio-col-cyan:checked + label:after {
-  background-color: #00BCD4;
-  border-color: #00BCD4; }
+  background-color: #2196F3;
+  border-color: #2196F3; }
 
 [type="radio"].radio-col-teal:checked + label:after {
   background-color: #009688;
@@ -3789,11 +3785,11 @@ section.content {
   border: 2px solid #03A9F4; }
 
 [type="radio"].with-gap.radio-col-cyan:checked + label:before {
-  border: 2px solid #00BCD4; }
+  border: 2px solid #2196F3; }
 
 [type="radio"].with-gap.radio-col-cyan:checked + label:after {
-  background-color: #00BCD4;
-  border: 2px solid #00BCD4; }
+  background-color: #2196F3;
+  border: 2px solid #2196F3; }
 
 [type="radio"].with-gap.radio-col-teal:checked + label:before {
   border: 2px solid #009688; }
@@ -3939,7 +3935,7 @@ section.content {
   .switch label input[type=checkbox]:checked + .lever.switch-col-cyan {
     background-color: rgba(0, 188, 212, 0.5); }
     .switch label input[type=checkbox]:checked + .lever.switch-col-cyan:after {
-      background-color: #00BCD4; }
+      background-color: #2196F3; }
   .switch label input[type=checkbox]:checked:not(:disabled) ~ .lever.switch-col-teal:active:after {
     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 150, 136, 0.1); }
   .switch label input[type=checkbox]:checked + .lever.switch-col-teal {
@@ -4200,7 +4196,7 @@ section.content {
   border-bottom: 2px solid #03A9F4; }
 
 .nav-tabs.tab-col-cyan > li > a:before {
-  border-bottom: 2px solid #00BCD4; }
+  border-bottom: 2px solid #2196F3; }
 
 .nav-tabs.tab-col-teal > li > a:before {
   border-bottom: 2px solid #009688; }
@@ -4361,7 +4357,7 @@ section.content {
         background-color: rgba(0, 0, 0, 0.12); }
 
 .modal-col-cyan {
-  background-color: #00BCD4; }
+  background-color: #656565; }
   .modal-col-cyan .modal-body,
   .modal-col-cyan .modal-title {
     color: #fff !important; }
@@ -4657,9 +4653,9 @@ section.content {
     border-top-color: transparent !important; }
 
 .panel-group .panel-col-cyan {
-  border: 1px solid #00BCD4; }
+  border: 1px solid #2196F3; }
   .panel-group .panel-col-cyan .panel-title {
-    background-color: #00BCD4 !important;
+    background-color: #2196F3 !important;
     color: #fff; }
   .panel-group .panel-col-cyan .panel-body {
     border-top-color: transparent !important; }
@@ -4851,7 +4847,7 @@ section.content {
 
 .full-body .panel-col-cyan .panel-body {
   border-top-color: #fff !important;
-  background-color: #00BCD4;
+  background-color: #2196F3;
   color: #fff; }
 
 .full-body .panel-col-teal .panel-body {
@@ -5307,11 +5303,11 @@ fieldset[disabled] .form-control {
     color: #fff; }
 
 .breadcrumb-col-cyan li a {
-  color: #00BCD4 !important;
+  color: #2196F3 !important;
   font-weight: bold; }
 
 .breadcrumb-bg-cyan {
-  background-color: #00BCD4 !important; }
+  background-color: #2196F3 !important; }
   .breadcrumb-bg-cyan li {
     color: #fff !important; }
     .breadcrumb-bg-cyan li a {
@@ -5693,14 +5689,14 @@ fieldset[disabled] .form-control {
     opacity: 0.8; }
 
 .list-group .pl-cyan {
-  stroke: #00BCD4; }
+  stroke: #2196F3; }
 
 .list-group .list-group-bg-cyan {
-  background-color: #00BCD4;
+  background-color: #2196F3;
   border: none;
   color: #fff; }
   .list-group .list-group-bg-cyan:hover, .list-group .list-group-bg-cyan:focus {
-    background-color: #00BCD4;
+    background-color: #2196F3;
     color: #fff;
     opacity: 0.8; }
 
@@ -6316,7 +6312,7 @@ fieldset[disabled] .form-control {
   stroke: #03A9F4; }
 
 .md-preloader .pl-cyan {
-  stroke: #00BCD4; }
+  stroke: #2196F3; }
 
 .md-preloader .pl-teal {
   stroke: #009688; }
@@ -6408,7 +6404,7 @@ fieldset[disabled] .form-control {
   .spinner-layer.pl-light-blue {
     border-color: #03A9F4; }
   .spinner-layer.pl-cyan {
-    border-color: #00BCD4; }
+    border-color: #2196F3; }
   .spinner-layer.pl-teal {
     border-color: #009688; }
   .spinner-layer.pl-green {
@@ -7741,10 +7737,12 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-  background-color: #00BCD4;
+  /*background-color: #2196F3;*/
+  background-image: url("../images/mesh.png");
+  background-repeat: repeat;
   padding-left: 0;
-  max-width: 360px;
-  margin: 5% auto;
+  max-width: 800px;
+  margin: 2% auto;
   overflow-x: hidden; }
   .login-page .login-box .msg {
     color: #555;
@@ -7753,7 +7751,7 @@ fieldset[disabled] .form-control {
   .login-page .login-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #00BCD4; }
+    color: #2196F3; }
   .login-page .login-box .logo {
     margin-bottom: 20px; }
     .login-page .login-box .logo a {
@@ -7771,7 +7769,7 @@ fieldset[disabled] .form-control {
 
 /* Sign Up Page ================================ */
 .signup-page {
-  background-color: #00BCD4;
+  background-color: #656565;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7783,7 +7781,7 @@ fieldset[disabled] .form-control {
   .signup-page .signup-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #00BCD4; }
+    color: #656565; }
   .signup-page .signup-box .logo {
     margin-bottom: 20px; }
     .signup-page .signup-box .logo a {
@@ -7801,7 +7799,7 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-  background-color: #00BCD4;
+  background-color: #656565;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7813,7 +7811,7 @@ fieldset[disabled] .form-control {
   .fp-page .fp-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #00BCD4; }
+    color: #2196F3; }
   .fp-page .fp-box .logo {
     margin-bottom: 20px; }
     .fp-page .fp-box .logo a {
@@ -8043,3 +8041,26 @@ html.ie11 .dropdown-menu ul.menu li a {
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
 
+.sign-container {
+    display: table;
+    background-image: url("../images/licence_plate.png");
+    background-repeat: no-repeat;
+    width: 560px;
+
+        font-family: 'Euro Plate';
+    font-size: 100px;
+    text-shadow: -.0625rem .1875rem .1875rem #fff,.125rem .1875rem .1875rem rgba(0,0,0,0.5);
+    position: relative;
+}
+
+#LK, #KN, #ZL {
+     float: left;
+     margin-right: 25px;
+     box-sizing: border-box;
+     margin-top: -10px;
+     display: table-row;
+}
+
+#LK {
+    margin-left: 70px;
+}

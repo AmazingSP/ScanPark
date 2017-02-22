@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Server.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         public IActionResult Index()
