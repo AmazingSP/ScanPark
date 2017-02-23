@@ -93,8 +93,9 @@
                             <ul class="dropdown-menu pull-right">
                                 <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profil</a></li>
                                 <li><a href="javascript:void(0);"><i class="material-icons">mode_edit</i>Profil bearbeiten</a></li>
-                                <li role="seperator" class="divider"></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">input</i>Abmelden</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                <a asp-controller="Account" asp-action="LogOff"><i class="material-icons">input</i>Abmelden</a></li>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +138,6 @@
                 <!-- #Footer -->
 
             </aside>
-            <!-- #END# Left Sidebar -->
 
             <!-- Right Sidebar -->
             <aside id="rightsidebar" class="right-sidebar">
@@ -233,7 +233,6 @@
                     </div>
                 </div>
             </aside>
-            <!-- #END# Right Sidebar -->
         </section>
 
         <!-- Main Content -->

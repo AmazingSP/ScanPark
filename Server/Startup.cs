@@ -1,13 +1,19 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Server.Models;
+using System;
 
 namespace Server
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
+
+        // Konfigurationsdatei wird erstellt
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -15,24 +21,24 @@ namespace Server
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            Configuration = builder.Build();
 
-            using (var client = new DataBaseContext())
-            {
-                client.Database.EnsureCreated();
-            }
+            Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // Hier werden die einzelnen Services, wie
+        // Datenbankverbindungen, Benutzerkontext, etc. konfiguriert
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UserIdentityDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<UserIdentity, UserRole>()
+                .AddEntityFrameworkStores<UserIdentityDBContext>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc();
-            services.AddEntityFrameworkSqlite().AddDbContext<DataBaseContext>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // Diese Methode wird zur Laufzeit aufgerufen
+        // Hier wird der HTTP request konfiguriert.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -49,12 +55,12 @@ namespace Server
             }
 
             app.UseStaticFiles();
-
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

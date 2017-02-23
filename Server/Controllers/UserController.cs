@@ -1,13 +1,33 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Server.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Server.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class UserController : Controller
     {
+        private readonly UserManager<UserIdentity> userManager;
+
+        public UserController(UserManager<UserIdentity> userManager)
+        {
+            this.userManager = userManager;
+        }
+
         public IActionResult Index()
         {
+            UserIdentity user = userManager.GetUserAsync(HttpContext.User).Result;
+
+            ViewBag.Message = $"Welcome {user.FirstName}!";
+            if (userManager.IsInRoleAsync(user, "NormalUser").Result)
+            {
+                ViewBag.RoleMessage = "You are a NormalUser.";
+            }
             return View();
         }
 
@@ -17,11 +37,6 @@ namespace Server.Controllers
         }
 
         public IActionResult Cars()
-        {
-            return View();
-        }
-
-        public IActionResult Error()
         {
             return View();
         }
