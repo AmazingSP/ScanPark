@@ -145,15 +145,20 @@ table.table-bordered.dataTable {
 table.table-bordered.dataTable th,
 table.table-bordered.dataTable td {
   border-left-width: 0;
+  vertical-align: middle;
+  text-align-last: center;
 }
-table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable th:last-child,
-table.table-bordered.dataTable td:last-child,
+table.table-bordered.dataTable th:last-child,
 table.table-bordered.dataTable td:last-child {
   border-right-width: 0;
+  text-align: center;
 }
+
 table.table-bordered.dataTable tbody th,
 table.table-bordered.dataTable tbody td {
   border-bottom-width: 0;
+  vertical-align: middle;
+  text-align-last: center;
 }
 
 div.dataTables_scrollHead table.table-bordered {

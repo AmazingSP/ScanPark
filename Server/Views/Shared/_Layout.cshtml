@@ -5,7 +5,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>ScanPark</title>
+
+        <!-- Titel / Überschrift im Browsere -->
+        <title>Willkommen bei ScanPark</title>
 
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -18,11 +20,16 @@
 
         <!-- Theme -->
         <link href="~/css/themes/all-themes.css" rel="stylesheet" />
-        <!-- <link href="~/css/themes/theme.css" rel="stylesheet" /> -->
 
         <!-- jQuery DataTable -->
         <link href="~/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
 
+        <!-- jQuery Steps -->
+        <link href="~/plugins/jquery-steps/jquery.steps.css" rel="stylesheet" />
+
+        <!-- Sweetalert Css -->
+        <link href="~/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+        
         <!-- Custom Css -->
         <link href="~/css/style.css" rel="stylesheet">
 
@@ -48,11 +55,11 @@
             </div>
         </div>
 
-        <!-- Overlay For Sidebars -->
+        <!-- Overlay für die Sidebars -->
         <div class="overlay"></div>
 
         <!-- Search Bar -->
-        <div class="search-bar">
+        <!-- <div class="search-bar">
             <div class="search-icon">
                 <i class="material-icons">search</i>
             </div>
@@ -60,9 +67,9 @@
             <div class="close-search">
                 <i class="material-icons">close</i>
             </div>
-        </div>
+        </div> -->
 
-        <!-- Top Bar -->
+        <!-- Obere Titelleiste -->
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -85,48 +92,69 @@
                     <div class="image">
                         <img src="~/images/user.png" width="48" height="48" alt="User" />
                     </div>
-                    <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Arthur Böhm</div>
-                        <div class="email">boehm.arthur@web.de</div>
-                        <div class="btn-group user-helper-dropdown">
-                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profil</a></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">mode_edit</i>Profil bearbeiten</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li>
-                                <a asp-controller="Account" asp-action="LogOff"><i class="material-icons">input</i>Abmelden</a></li>
-                            </ul>
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        <div class="info-container">
+                            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@ViewBag.FullName</div>
+                            <div class="email">@ViewBag.EMail</div>
+                            <div class="btn-group user-helper-dropdown">
+                                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profil</a></li>
+                                    <li><a href="javascript:void(0);"><i class="material-icons">mode_edit</i>Profil bearbeiten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a asp-controller="Account" asp-action="LogOff"><i class="material-icons">input</i>Abmelden</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="info-container">
+                            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@ViewBag.FullName</div>
+                            <div class="email">@ViewBag.LicensePlate</div>
+                        </div>
+                    }
                 </div>
-                <!-- #User Info -->
 
                 <!-- Menu -->
-                <div class="menu">
-                    <ul class="list">
-                        <li class="header">Hauptmenü</li>
-                        <li id="bills" class="active">
-                            <a href="~/User/Bills">
-                                <i class="material-icons">euro_symbol</i>
-                                <span>Rechnungen</span>
-                            </a>
-                        </li>
-                        <li id="cars">
-                            <a href="~/User/Cars">
-                                <i class="material-icons">directions_car</i>
-                                <span>Fahrzeuge</span>
-                            </a>
-                        </li>
-                        <li id="locations">
-                            <a href="pages/maps/google.html">
-                                <i class="material-icons">location_on</i>
-                                <span>ScanPark Standorte</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- #Menu -->
+                    <div class="menu">
+                        <ul class="list">
+                            <li class="header">Hauptmenü</li>
+                            @if (Context.User.Identity.IsAuthenticated)
+                            {
+                                <li id="bills" class="active">
+                                    <a href="~/User/Bills">
+                                        <i class="material-icons">euro_symbol</i>
+                                        <span>Rechnungen</span>
+                                    </a>
+                                </li>
+                                <li id="cars">
+                                    <a href="~/User/Cars">
+                                        <i class="material-icons">directions_car</i>
+                                        <span>Fahrzeuge</span>
+                                    </a>
+                                </li>
+                                <li id="locations">
+                                    <a href="pages/maps/google.html">
+                                        <i class="material-icons">location_on</i>
+                                        <span>ScanPark Standorte</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="active">
+                                    <a>
+                                        <i class="material-icons">euro_symbol</i>
+                                        <span>Bezahlung</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
 
                 <!-- Footer -->
                 <div class="legal">
@@ -135,7 +163,6 @@
                         <a href="javascript:void(0);">ScanPark</a>.
                     </div>
                 </div>
-                <!-- #Footer -->
 
             </aside>
 
@@ -239,7 +266,6 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="block-header">
-                    <h2>ÜBERSICHT</h2>
                     @RenderBody()
                 </div>
             </div>
@@ -257,11 +283,20 @@
         <!-- Jquery CountTo Plugin Js -->
         <script src="~/plugins/jquery-countto/jquery.countTo.js"></script>
 
+        <!-- jQuery Validation -->
+        <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+
+        <!-- jQuery Steps -->
+        <script src="~/plugins/jquery-steps/jquery.steps.js"></script>
+
+        <!-- SweetAlert Plugin Js -->
+        <script src="~/plugins/sweetalert/sweetalert.js"></script>   
+
         <!-- Custom Js -->
         <script src="~/js/admin.js"></script>
         <script src="~/js/pages/index.js"></script>
 
         <!-- Demo Js -->
-        <script src="~/js/demo.js"></script>
+        @*<script src="~/js/demo.js"></script>*@
     </body>
 </html>

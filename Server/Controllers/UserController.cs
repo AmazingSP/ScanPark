@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Server.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Server.Models;
 
 namespace Server.Controllers
 {
@@ -13,7 +9,7 @@ namespace Server.Controllers
     public class UserController : Controller
     {
         private readonly UserManager<UserIdentity> userManager;
-
+        
         public UserController(UserManager<UserIdentity> userManager)
         {
             this.userManager = userManager;
@@ -21,23 +17,22 @@ namespace Server.Controllers
 
         public IActionResult Index()
         {
-            UserIdentity user = userManager.GetUserAsync(HttpContext.User).Result;
-
-            ViewBag.Message = $"Welcome {user.FirstName}!";
-            if (userManager.IsInRoleAsync(user, "NormalUser").Result)
-            {
-                ViewBag.RoleMessage = "You are a NormalUser.";
-            }
-            return View();
+            return RedirectToAction("Bills");
         }
 
         public IActionResult Bills()
         {
+            UserIdentity user = userManager.GetUserAsync(HttpContext.User).Result;
+            ViewBag.FullName = string.Concat(user.FirstName, " ", user.LastName);
+            ViewBag.EMail = user.Email;
             return View();
         }
 
         public IActionResult Cars()
         {
+            UserIdentity user = userManager.GetUserAsync(HttpContext.User).Result;
+            ViewBag.FullName = string.Concat(user.FirstName, " ", user.LastName);
+            ViewBag.EMail = user.Email;
             return View();
         }
     }

@@ -34,6 +34,11 @@ namespace Server.Controllers
             return View();
         }
 
+        public IActionResult Guest()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> LogOff()
         {
             await loginManager.SignOutAsync();

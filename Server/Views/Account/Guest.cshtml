@@ -1,4 +1,4 @@
-﻿@model Server.Models.LoginViewModel
+﻿@model Server.Models.GuestViewModel
 
 @{
     Layout = null;
@@ -33,18 +33,17 @@
             <div class="logo msg">
                 <img class="brand-logo" src="~/images/ScanParkLogoBlack.png" />
             </div>
-            <!-- Benutzer- und Gast-Anmeldung bzw. Registrierung -->
+            <!-- Gast-Anmeldung -->
             <div class="card">
-                <!-- Benutzer Anmeldung -->
                 <div class="header">
-                    <form asp-controller="Account" asp-action="Login" method="post">
-                        <div class="msg"><h4>Sie sich an mit Ihrem Account an</h4></div>
+                    <form asp-controller="Guest" asp-action="OneTimePayment" method="post">
+                        <div class="msg"><h4>Geben Sie hier Ihr Nummernschild und den One-Time Payment Code ein</h4></div>
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="material-icons">person</i>
                             </span>
                             <div class="form-line">
-                                <input type="text" class="form-control" asp-for="UserName" placeholder="E-Mail Adresse" autofocus required>
+                                <input type="text" class="form-control" asp-for="LicensePlate" placeholder="Nummernschild" autofocus required>
                             </div>
                         </div>
                         <div class="input-group">
@@ -52,48 +51,15 @@
                                 <i class="material-icons">lock</i>
                             </span>
                             <div class="form-line">
-                                <input type="password" class="form-control" asp-for="Password" placeholder="Kennwort" required>
+                                <input type="text" class="form-control" asp-for="OneTimePaymentCode" placeholder="Zahlungscode" required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-8 p-t-5">
-                                <input type="checkbox" asp-for="RememberMe" class="filled-in chk-col-blue-grey">
-                                <label for="rememberme">Anmeldedaten speichern</label>
-                            </div>
                             <div class="col-xs-4">
                                 <button class="btn btn-block bg-blue-grey waves-effect" type="submit">Anmelden</button>
                             </div>
                         </div>
-                        <div class="row m-t-15 m-b--20">
-                            <div class="col-xs-offset-6 col-xs-6 align-right">
-                                <a href="forgot-password.html">Kennwort vergessen?</a>
-                            </div>
-                        </div>
                         <div asp-validation-summary="All"></div>
-                    </form>
-                </div>
-
-                <!-- Registrierung -->
-                <div class="header">
-                    <form id="signin" method="POST">
-                        <div class="msg"><h4>Kein Konto vorhanden?</h4></div>
-                        <div class="row">
-                            <div class="col-xs-8 col-xs-offset-2">
-                                <a class="btn btn-block bg-blue-grey waves-effect">Jetzt registrieren</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Gast-Anmeldung -->
-                <div class="header">
-                    <form id="guest" method="POST">
-                        <div class="msg"><h4>Sie möchten kein Konto anlegen?</h4></div>
-                        <div class="row">
-                            <div class="col-xs-8 col-xs-offset-2">
-                                <a class="btn btn-block bg-blue-grey waves-effect" asp-controller="Account" asp-action="Guest">Als Gast anmelden</a>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
