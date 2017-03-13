@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Meta Informationen -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="Cache-Control" Content="no-cache">
+    <meta http-equiv="Pragma" Content="no-cache">
+    <meta http-equiv="Expires" Content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+    <!-- Titel -->
+    <title>@ViewBag.Title</title>
+
+
+    <!-- Stylesheets | Font Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <!-- Stylesheets | Font Roboto -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
+
+    <!-- Stylesheets | Font Awesome -->
+    <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+
+    <!-- Stylesheets | Bootstrap-->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <!-- Stylesheets | Material Kit -->
+    <link href="~/css/custom-style-materialkit.css" rel="stylesheet" />
+
+
+    <!-- Stylesheets | DataTable -->
+    <link href="~/lib/datatables/media/css/dataTables.material.css" rel="stylesheet" />
+
+
+    <!-- Stylesheets | Sweet Alert 2 -->
+    <link href="~/lib/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+
+
+    <!-- Stylesheets | Custom Styles -->
+    <link href="~/css/custom-styles.css" rel="stylesheet" />
+    <link href="~/css/custom-fonts.css" rel="stylesheet" />
+    <link href="~/css/custom-style-materialkit.css" rel="stylesheet" />
+
+
+    <!-- StyleSheets | Ladda -->
+    <link href="~/lib/ladda-boostrap/dist/ladda-themeless.min.css" rel="stylesheet" />
+
+
+    <!-- Java Script | jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body class="theme-blue-grey">
+    <!-- Hauptinhalt -->
+    <div class="wrapper">
+
+        <div class="sidebar" data-color="purple" data-image="../img/backgrounds/07.jpg">
+
+            <!-- Logo oben links -->
+            <div class="logo">
+                <img src="~/img/logos/black.png" />
+            </div>
+
+            <!-- Navigationsleiste links -->
+            <div class="sidebar-wrapper">
+                <form class="navbar-form navbar-right navbar-info" role="search">
+                    <div class="form-group  is-empty">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="material-input"></span>
+                        <span class="material-input"></span>
+                    </div>
+                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i><div class="ripple-container"></div>
+                    </button>
+                </form>
+                <ul class="nav nav-mobile-menu">
+                    <li>
+                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="material-icons">dashboard</i>
+                            <p class="hidden-lg hidden-md">Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="material-icons">notifications</i>
+                            <span class="notification">5</span>
+                            <p class="hidden-lg hidden-md">Notifications</p>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mike John responded to your email</a></li>
+                            <li><a href="#">You have 5 new tasks</a></li>
+                            <li><a href="#">You're now friend with Andrew</a></li>
+                            <li><a href="#">Another Notification</a></li>
+                            <li><a href="#">Another One</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="material-icons">person</i>
+                            <p class="hidden-lg hidden-md">Profile</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li>
+                        <a href="@Url.Action("Details", "Profile")">
+                            <i class="material-icons">person</i>
+                            <p>Benutzerprofil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Bills", "Profile")">
+                            <i class="material-icons">euro_symbol</i>
+                            <p>Rechnungen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Cars", "Profile")">
+                            <i class="material-icons">directions_car</i>
+                            <p>Fahrzeuge verwalten</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Map", "Profile")">
+                            <i class="material-icons">location_on</i>
+                            <p>ScanPark Parkhäuser</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Logoff", "Account")">
+                            <i class="material-icons">exit_to_app</i>
+                            <p>Abmelden</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-background" style="background-image: url(../img/backgrounds/07.jpg) "></div>
+        </div>
+
+        <!-- Haup Container -->
+        <div class="main-panel">
+
+            <!-- Navigationsleiste oben -->
+            <div></div>
+
+            <!-- Inhalt -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Ändert das Highlighting in der linken Navigationsleiste
+            $('li.active').removeClass("active");
+            $('ul.nav').find('a[href="' + location.pathname + '"]').parent().addClass('active');
+        });
+    </script>
+
+
+    <!-- Java Script | Bootstrap -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+    <!-- Java Script | Material Kit -->
+    <script src="~/lib/material-kit/assets/js/material.min.js"></script>
+    <script src="~/lib/material-kit/assets/js/nouislider.min.js"></script>
+    <script src="~/lib/material-kit/assets/js/bootstrap-datepicker.js"></script>
+    <script src="~/lib/material-kit/assets/js/material-kit.js"></script>
+
+
+    <!-- JavaScript | DataTables -->
+    <script src="~/lib/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables/media/js/dataTables.material.js"></script>
+    <script src="~/lib/datatables.net-buttons/js/dataTables.buttons.js"></script>
+
+
+    <!-- JavaScripts | Sweet Alert 2 -->
+    <script src="~/lib/sweetalert2/dist/sweetalert2.min.js"></script>
+
+
+    <!-- JavaScripts | jQuery Validation -->
+    @*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>*@
+
+    <!-- javaScripts | Ladda -->
+    <script src="~/lib/ladda-boostrap/dist/spin.min.js"></script>
+    <script src="~/lib/ladda-boostrap/dist/ladda.min.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

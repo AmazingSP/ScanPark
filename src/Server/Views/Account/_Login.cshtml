@@ -1,0 +1,31 @@
+﻿@model LoginViewModel
+
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "card-body" }))
+{
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">email</i>
+        </span>
+        <div class="form-group is-empty">
+            <input type="text" asp-for="Email" class="form-control" placeholder="E-Mail">
+            <span asp-validation-for="Email" class="material-input text-danger"></span>
+        </div>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">lock_outline</i>
+        </span>
+        <div class="form-group is-empty">
+            <input type="password" asp-for="Password" class="form-control" placeholder="Kennwort">
+            <span asp-validation-for="Password" class="material-inputtext-danger"></span>
+        </div>
+    </div>
+    <div class="input-group" style="height: 77px">
+        
+    </div>
+    <div class="card-body text-center">
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 165px">Anmelden</button>
+    </div>
+    <div asp-validation-summary="All"></div>
+}

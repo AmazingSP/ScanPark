@@ -1,0 +1,7 @@
+﻿/* Kennzeichen Schrift */
+@font-face {
+    font-family: 'Euro Plate';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Euro Plate'), local('Euro Plate'), url('../fonts/EuroPlate.woff2') format('woff2');
+}

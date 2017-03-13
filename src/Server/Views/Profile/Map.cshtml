@@ -1,0 +1,70 @@
+﻿<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnycWatbGyK6ldFqErjFtko1yeMclNUOA&amp;sensor=true"></script>
+
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="card">
+        <div class="card-header" data-background-color="purple">
+            <h3 class="title">ScanPark Parkhäuser</h3>
+            <p class="category">Hier haben Sie einen Überblick über Parkhäuser und Parkplätze die mit uns kooperieren.</p>
+        </div>
+        <div class="card-content table-responsive">
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        initMap();
+    });
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            zoom: 14,
+            center: { lat: 49.01, lng: 8.41 },
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: true,
+            rotateControl: true
+        });
+
+        setMarkers(map);
+    }
+
+    var carparks = [
+      ['Parkahaus Ludwig', 49.007665, 8.395825, 5],
+      ['EWG Parkhaus', 49.008262, 8.396403, 4],
+      ['Parkhaus Stehanplatz', 49.008403, 8.393420, 3],
+      ['Parkhaus Herrsenstraßen', 49.010458, 8.401059, 2],
+      ['Parkhaus Marktplatz', 49.008101, 8.406381, 1]
+    ];
+
+    function setMarkers(map) {
+
+        var image = {
+            url: '../img/logos/picker.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(32, 32),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(0, 32)
+        };
+     
+        var shape = {
+            coords: [1, 1, 1, 20, 18, 20, 18, 1],
+            type: 'poly'
+        };
+        for (var i = 0; i < carparks.length; i++) {
+            var carpark = carparks[i];
+            var marker = new google.maps.Marker({
+                position: { lat: carpark[1], lng: carpark[2] },
+                map: map,
+                icon: image,
+                shape: shape,
+                title: carpark[0],
+                zIndex: carpark[3]
+            });
+        }
+    }
+</script>

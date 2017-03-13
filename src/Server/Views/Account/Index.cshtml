@@ -1,0 +1,172 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Meta Informationen -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta http-equiv="Cache-Control" Content="no-cache">
+        <meta http-equiv="Pragma" Content="no-cache">
+        <meta http-equiv="Expires" Content="0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+        <!-- Titel -->
+        <title>@ViewBag.Title</title>
+
+
+        <!-- Stylesheets | Font Material Icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+        <!-- Stylesheets | Font Roboto -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
+
+        <!-- Stylesheets | Font Awesome -->
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type='text/css' />
+
+
+        <!-- Stylesheets | Bootstrap-->
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type='text/css' />
+
+
+        <!-- Stylesheets | Material Kit -->
+        <link href="~/lib/material-kit/assets/css/material-kit.css" rel="stylesheet" type='text/css' />
+
+
+        <!-- Stylesheets | Custom Styles -->
+        <link href="~/css/custom-styles.css" rel="stylesheet" type='text/css' />
+
+
+        <!-- Java Script | jQuery -->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    </head>
+    <body class="profile-page">
+        <!-- Navigationsleiste -->
+        <nav class="navbar navbar-fixed-top navbar-transparent">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">
+                        <img src="~/img/logos/white.png" />
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- Wrapper für Hauptinhalt -->
+        <div class="wrapper">
+            <div class="header header-filter"></div>
+
+            <div class="main main-raised">
+                <div class="profile-content">
+                    <div class="container">
+                        <!-- Überschrift -->
+                        <div class="row">
+                            <div class="profile">
+                                <div class="name">
+                                    <h3 class="title">Willkommen bei ScanPark</h3>
+                                    <h6>DAS WELTWEIT BESTE PARKING-MANAGEMENT-SYSTEM</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hauptinhalt -->
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="profile-tabs">
+                                    <div class="nav-align-center">
+                                        <!-- Tab Leiste -->
+                                        <ul class="nav nav-pills" role="tablist">
+
+                                            <!-- Login -->
+                                            <li class="active">
+                                                <a href="#login" role="tab" data-toggle="tab" aria-expanded="false">
+                                                    <i class="material-icons">lock_outline</i>Kunden Login
+                                                </a>
+                                            </li>
+
+
+                                            <!-- Registrierung -->
+                                            <li class="">
+                                                <a href="#register" role="tab" data-toggle="tab" aria-expanded="true">
+                                                    <i class="material-icons">create</i>Registrierung
+                                                </a>
+                                            </li>
+
+
+                                            <!-- Gastanmeldung -->
+                                            <li class="">
+                                                <a href="#guest" role="tab" data-toggle="tab" aria-expanded="false">
+                                                    <i class="material-icons">person</i>Gastanmeldung
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Tab Inhalt -->
+                                        <div class="tab-content gallery">
+                                            <!-- Login -->
+                                            <div class="tab-pane active" id="login">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="card">
+                                                            @{Html.RenderPartial("_Login");}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Register -->
+                                            <div class="tab-pane text-center" id="register">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="card">
+                                                            @{Html.RenderPartial("_Register");}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Guest -->
+                                            <div class="tab-pane text-center" id="guest">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="card">
+                                                            @{Html.RenderPartial("_Guest");}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div asp-validation-summary="All"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer"></footer>
+        </div>
+
+
+        <!-- Java Script | Bootstrap -->
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+        <!-- Java Script | Material Kit -->
+        <script src="~/lib/material-kit/assets/js/material.min.js"></script>
+        <script src="~/lib/material-kit/assets/js/nouislider.min.js"></script>
+        <script src="~/lib/material-kit/assets/js/bootstrap-datepicker.js"></script>
+        <script src="~/lib/material-kit/assets/js/material-kit.js"></script>
+
+        <script src="~/js/material-dashboard.js"></script>
+    </body>
+</html>

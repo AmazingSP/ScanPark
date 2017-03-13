@@ -1,0 +1,144 @@
+﻿html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-image: url("../img/backgrounds/07.jpg");
+    background-size: cover;
+}
+
+.main.main-raised {
+    margin-top: -200px;
+}
+
+#contactform .btn:hover {
+    background: rgba(9,8,77,0.7);
+}
+
+#map-canvas {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 15px;
+    border: 0px solid #fff;
+}
+
+/*Nummernschild klein*/
+
+.sign-container-small {
+    display: table;
+    background-image: url("../img/licenceplate.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    font-family: 'Euro Plate';
+    font-size: 24px;
+    text-shadow: -.0625rem .1875rem .1875rem #fff,.125rem .1875rem .1875rem rgba(0,0,0,0.5);
+    position: relative;
+    margin: auto;
+    width: 150px;
+}
+
+
+    .sign-container-small > .LK,
+    .sign-container-small > .KN,
+    .sign-container-small > .ZL {
+        position: absolute;
+        float: left;
+        margin-right: 10px;
+        box-sizing: border-box;
+        margin-top: 0px;
+        display: table-row;
+    }
+
+    .sign-container-small > .LK {
+        left: 20px;
+    }
+
+    .sign-container-small > .KN {
+        left: 55px;
+    }
+
+    .sign-container-small > .ZL {
+        left: 85px;
+    }
+
+
+/*Nummernschild groß*/
+.sign-container-big {
+    display: table;
+    background-image: url("../img/licenceplate.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-family: 'Euro Plate';
+    font-size: 100px;
+    position: relative;
+    margin: auto;
+    width: 610px;
+    height: 140px;
+}
+
+
+    .sign-container-big > .LK,
+    .sign-container-big > .KN,
+    .sign-container-big > .ZL {
+        float: left;
+        margin-right: 15px;
+        box-sizing: border-box;
+        display: table-row;
+        margin-top: 18px;
+        height: 100px;
+        border: 3px solid transparent;
+        text-shadow: -.0625rem .1875rem .1875rem #fff,.125rem .1875rem .1875rem rgba(0,0,0,0.5);
+    }
+
+        .sign-container-big > .LK:focus,
+        .sign-container-big > .KN:focus,
+        .sign-container-big > .ZL:focus {
+            border: 3px dashed rgb(48, 133, 214);
+        }
+
+    .sign-container-big > .LK {
+        margin-left: 70px;
+        background-color: transparent;
+        width: 162px;
+    }
+
+    .sign-container-big > .KN {
+        background-color: transparent;
+        width: 115px;
+    }
+
+    .sign-container-big > .ZL {
+        background-color: transparent;
+        width: 220px;
+        margin-right: 0px;
+    }
+
+
+
+
+/*credit cards images*/
+.americanexpress {
+    background-image: url("../img/cards/americanexpress.png");
+}
+
+.dinnersclub {
+    background-image: url("../img/cards/dinersclub.png");
+}
+
+.maestro {
+    background-image: url("../img/cards/maestro.png");
+}
+
+.mastercard {
+    background-image: url("../img/cards/mastercard.png");
+}
+
+.paypal {
+    background-image: url("../img/cards/paypal.png");
+}
+
+.visa {
+    background-image: url("../img/cards/visa.png");
+}

@@ -1,0 +1,49 @@
+{
+  "name": "datatables-material-design",
+  "description": "Theme material design for datatables",
+  "authors": [
+    "Stéphane Monnot <monnot.stephane@gmail.com>"
+  ],
+  "main": [
+    "./dist/js/dataTables.materialdesign.js",
+    "./dist/js/dataTables.materialdesign.min.js",
+    "./dist/css/dataTables.materialdesign.css",
+    "./dist/css/dataTables.materialdesign.min.css"
+  ],
+  "version": "0.1.2",
+  "keywords": [
+    "datatable",
+    "datatables",
+    "material",
+    "material design",
+    "design",
+    "md"
+  ],
+  "license": "CC BY-NC-SA 3.0",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.3.5",
+    "bootstrap-material-design": "~0.3.0",
+    "youtube-loading-bar": "~0.1.0",
+    "datatables": "~1.10.8"
+  },
+  "ignore": [
+    "bower_components",
+    "demo/",
+    "dist/js/lib/",
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/shinbuntu/datatables-material-design",
+  "_release": "0.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.2",
+    "commit": "f548670ef0a1bd349629b9fd9e158c91cf6fe637"
+  },
+  "_source": "https://github.com/shinbuntu/datatables-material-design.git",
+  "_target": "0.1.2",
+  "_originalSource": "datatables-material-design"
+}

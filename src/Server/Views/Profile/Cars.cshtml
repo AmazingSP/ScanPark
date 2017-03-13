@@ -1,0 +1,256 @@
+﻿<div class="col-md-10 col-md-offset-1">
+	<div class="card">
+		<div class="card-header" data-background-color="purple">
+			<h3 class="title">Fahrzeugübersicht</h3>
+			<p class="category">Hier haben Sie einen Überblick über Ihre registrierten Kennzeichen</p>
+		</div>
+		<div class="card-content table-responsive">
+			<table class="table" id="carstable">
+				<thead class="text-primary">
+					<tr>
+						<th>Kennzeichen</th>
+						<th>Marke</th>
+						<th>Modell</th>
+						<th>Aktion</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+
+		var table = $('#carstable').DataTable({
+			"bPaginate": true,
+			"sPaginationType": "full_numbers",
+			"bSortClasses": false,
+			"bLengthChange": false,
+			"pageLength": 5,
+			"bFilter": false,
+			"bInfo": false,
+			"sInfoEmpty": "Keine Einträge vorhanden",
+			"bAutoWidth": false,
+			"oLanguage": {
+				"sSearch": "Suche: ",
+				"sZeroRecords": "Keine Einträge vorhanden",
+				"oPaginate": {
+					"sFirst": "Erste Seite",
+					"sPrevious": "Vorherige Seite",
+					"sNext": "Nächste Seite",
+					"sLast": "Letzte Seite"
+				}
+			},
+			"drawCallback": function () {
+				$('button.mdl-button').addClass("btn btn-simple");
+			},
+			"ajax": {
+				"url": "/Car/Car",
+				"type": "GET",
+				"dataSrc": ""
+			},
+			"columns": [
+				{ data: null },
+				{ data: 'brand' },
+				{ data: 'model' },
+				{
+					data: null,
+					defaultContent: '<button class="btn bg-blue-grey btn-sm edit"><i class="material-icons">create</i></button><button class="btn btn-danger btn-sm delete"><i class="material-icons">delete_forever</i></button>',
+					orderable: false
+				}
+			],
+			columnDefs: [
+				{ width: 200, targets: 0 }
+			],
+			rowCallback: function (row, data, index) {
+				$(row).find('td:eq(0)').html('<div class="sign-container-small"><div class="LK">' + data.plateDistrict + '</div><div class="KN">' + data.plateIdentifier + '</div><div class="ZL">' + data.plateNumber + '</div></div>');
+			},
+			dom: 'Bfrtip',
+
+			// Neues Fahrzeug anlegen
+			buttons: [
+				{
+					text: '<i class="material-icons">add</i> Fahrzeug hinzufügen',
+					className: 'btn btn-primary btn-sm',
+					action: function (e, dt, node, config) {
+
+						swal({
+							title: "Kennzeichen anlegen",
+							html:
+								'<div class="sign-container-big">' +
+									'<input id="sign-lk" type="text" class="LK" maxlength="3"></input>' +
+									'<input id="sign-kn" type="text" class="KN" maxlength="2"></input>' +
+									'<input id="sign-zl" type="text" class="ZL" maxlength="4"></input>' +
+								'</div>' +
+					            '<div class="row">' +
+						            '<div class="col-md-4 col-md-offset-2">' +
+							            '<div class="form-group label-floating">' +
+								            '<label class="control-label"></label>' +
+								            'Marke: <input type="text" id="brand" class="form-control" placeholder="Marke" required>' +
+								            '<span class="material-input"></span>' +
+							            '</div>' +
+						            '</div>' +
+						            '<div class="col-md-4">' +
+							            '<div class="form-group label-floating">' +
+								            '<label class="control-label"></label>' +
+								            'Modell: <input type="text" id="model" class="form-control" placeholder="Modell" required>' +
+								            '<span class="material-input"></span>' +
+							            '</div>' +
+						            '</div>' +
+					            '</div>',
+							width: 800,
+							animation: false,
+							allowOutsideClick: false,
+							customClass: 'animated fadeIn',
+							showCancelButton: true,
+							confirmButtonText: 'Speichern',
+							cancelButtonText: 'Abbrechen',
+							preConfirm: function () {
+								return new Promise(function (resolve) {
+									var data = {
+									    PlateDistrict: $('#sign-lk').val(),
+									    PlateIdentifier: $('#sign-kn').val(),
+									    PlateNumber: $('#sign-zl').val(),
+									    Brand: $('#brand').val(),
+									    Model: $('#model').val()
+									}
+									resolve(data);
+								});
+							}
+						}).then(
+						  function (result) {
+							  console.log(result);
+							  $.ajax({
+								  url: '/Car/Car',
+								  type: 'POST',
+								  contentType: 'application/json',
+								  data: JSON.stringify(result),
+								  success: function (result) {
+									  table.ajax.reload(null, false);
+								  }
+							  })
+						  }, function (dismiss) {
+						  }
+						);
+					}
+				}
+			]
+		});
+
+		// Fahrzeug editieren
+		$('#carstable').on('click', 'button.edit', function (e) {
+			var plate = table.row($(this).parents('tr')).data();
+
+			swal({
+				title: "Kennzeichen bearbeiten",
+				html:
+					'<div class="sign-container-big">' +
+						'<input id="sign-lk" type="text" class="LK" placeholder="' + plate.plateDistrict + '" value="' + plate.plateDistrict + '" maxlength="3"></input>' +
+						'<input id="sign-kn" type="text" class="KN" placeholder="' + plate.plateIdentifier + '" value="' + plate.plateIdentifier + '" maxlength="2"></input>' +
+						'<input id="sign-zl" type="text" class="ZL" placeholder="' + plate.plateNumber + '" value="' + plate.plateNumber + '" maxlength="4"></input>' +
+					'</div>' +
+					'<div class="row">' +
+						'<div class="col-md-4 col-md-offset-2">' +
+							'<div class="form-group label-floating">' +
+								'<label class="control-label"></label>' +
+								'Marke: <input type="text" id="brand" class="form-control" placeholder="Marke" value="' + plate.brand + '" required>' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+						'</div>' +
+						'<div class="col-md-4">' +
+							'<div class="form-group label-floating">' +
+								'<label class="control-label"></label>' +
+								'Modell: <input type="text" id="model" class="form-control" placeholder="Modell" value="' + plate.model + '" required>' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+						'</div>' +
+					'</div>',
+				width: 800,
+				animation: false,
+				allowOutsideClick: false,
+				customClass: 'animated fadeIn',
+				showCancelButton: true,
+				confirmButtonText: 'Speichern',
+				cancelButtonText: 'Abbrechen',
+				preConfirm: function () {
+					return new Promise(function (resolve) {
+						var data = {
+							PlateDistrict: $('#sign-lk').val(),
+							PlateIdentifier: $('#sign-kn').val(),
+							PlateNumber: $('#sign-zl').val(),
+							Brand: $('#brand').val(),
+							Model: $('#model').val(),
+							RegisteredPlateId: plate.registeredPlateId
+						}
+						resolve(data);
+					});
+				}
+			}).then(
+				function (result) {
+					console.log(result);
+					$.ajax({
+						url: '/Car/Car',
+						type: 'PUT',
+						contentType: 'application/json',
+						data: JSON.stringify(result),
+						success: function (pl) {
+							swal({
+								title: 'Vorgang erfolgreich',
+								text: 'Das Nummernschild wurde geändert auf: ' + result.PlateDistrict + ' ' + result.PlateIdentifier + ' ' + result.PlateNumber,
+								type: 'success',
+								animation: false,
+								customClass: 'animated fadeIn'
+							});
+							table.ajax.reload(null, false);
+						}
+					})
+				}, function (dismiss) {
+				}
+			);
+		});
+
+		// Fahrzeug löschen
+		$('#carstable').on('click', 'button.delete', function (e) {
+			var plate = table.row($(this).parents('tr')).data();
+
+			swal({
+				title: "Fahrzeug löschen",
+				html: "<h4>Möchten Sie das Fahrzeug aus Ihrem Profil wirklich löschen?</h4>",
+				type: "question",
+				animation: false,
+				customClass: 'animated fadeIn',
+				showCancelButton: true,
+				confirmButtonText: 'Ja',
+				cancelButtonText: 'Nein'
+			}).then(function () {
+				$.ajax({
+					url: "/Car/Car",
+					type: "DELETE",
+					data: { id: plate.registeredPlateId },
+					success: function (response) {
+						table.ajax.reload(null, false);
+						swal({
+							title: 'Vorgang erfolgreich',
+							text: 'Das Fahrzeug wurde gelöscht!',
+							type: 'success',
+							animation: false,
+							customClass: 'animated fadeIn'
+						});
+					}
+				});
+			}, function (dismiss) {
+				if (dismiss === 'cancel') {
+					swal({
+						title: 'Vorgang abgebrochen',
+						text: 'Es wurden keine Änderungen vorgenommen!',
+						type: 'error',
+						animation: false,
+						customClass: 'animated fadeIn'
+					})
+				}
+			});
+		});
+	});
+</script>

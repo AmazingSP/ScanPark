@@ -1,0 +1,93 @@
+﻿<div class="col-md-10 col-md-offset-1">
+	<div class="card">
+		<div class="card-header" data-background-color="purple">
+			<h3 class="title">Rechnungsübersicht</h3>
+			<p class="category">Hier haben Sie einen Überblick über Ihre Parkvorgänge sowie offene und bezahlte Rechnungen</p>
+		</div>
+		<div class="card-content table-responsive">
+			<table class="table table-striped table-hover js-basic-example dataTable" id="billstable">
+				<thead class="text-primary">
+					<tr>
+						<th>Kennzeichen</th>
+						<th>Datum</th>
+						<th>Einfahrt</th>
+						<th>Ausfahrt</th>
+						<th>Dauer</th>
+						<th>Betrag</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		var table = $('#billstable').DataTable({
+			"bPaginate": true,
+			"sPaginationType": "full_numbers",
+			"bSortClasses": false,
+			"bLengthChange": false,
+			"bFilter": false,
+			"bInfo": false,
+			"sInfoEmpty": "Keine Einträge vorhanden",
+			"bAutoWidth": false,
+			"oLanguage": {
+				"sSearch": "Suche: ",
+				"sZeroRecords": "Keine Einträge vorhanden",
+				"oPaginate": {
+					"sFirst": "Erste Seite",
+					"sPrevious": "Vorherige Seite",
+					"sNext": "Nächste Seite",
+					"sLast": "Letzte Seite"
+				}
+			},
+			"drawCallback": function () {
+				$('button.mdl-button').addClass("btn btn-simple");
+			},
+			"ajax": {
+				"url": "/Bill/Bill",
+				"type": "GET",
+				"dataSrc": ""
+			},
+			"columns": [
+				{ data: 'licensePlate' },
+				{ data: 'date' },
+				{ data: 'entrence' },
+				{ data: 'exit' },
+				{ data: 'duration' },
+				{ data: 'amount' },
+				{ data: 'paied' }
+			],
+			columnDefs: [
+				{ width: 200, targets: 0 }
+			],
+			rowCallback: function (row, data, index) {
+				if (data.paied == false) {
+					$(row).find('td:eq(6)').html('<button class="btn btn-warning ladda-button" data-style="zoom-in" data-size="s"><i class="material-icons"></i> Jetzt bezahlen</button>');
+				} else {
+					$(row).find('td:eq(6)').html('<span class="text-success">Bezahlt</span>');
+				}
+			}
+		});
+
+		$('#billstable tbody').on('click', 'button', function () {
+			var data = table.row($(this).parents('tr')).data();
+
+			var l = Ladda.create(this);
+			l.start();
+
+			$.ajax({
+				url: "/Bill/Bill",
+				type: "PUT",
+				data: { id: data.billId },
+				success: function (response) {
+					table.ajax.reload(null, false);
+				}
+			})
+			.always(function () { l.stop(); });
+		});
+	});
+</script>

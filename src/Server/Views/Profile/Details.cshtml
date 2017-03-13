@@ -1,0 +1,184 @@
+﻿@model Server.Models.Identity.ProfileModel
+
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="card">
+        <div class="card-header" data-background-color="purple">
+            <h3 class="title">Mein Profil</h3>
+            <p class="category">Zum &Auml;ndern Ihrer Daten klicken Sie in das Feld und anschlie&szlig;end auf "Profil aktualisieren."</p>
+        </div>
+        <form asp-action="Edit" id="detailsform">
+            <input type="hidden" asp-for="ProfileId" />
+
+            <!-- Persönliche Daten -->
+            <div class="card-content">
+                <h4>Pers&ouml;nliche Daten</h4>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="FirstName"></label>
+                            <input type="text" class="form-control" asp-for="FirstName" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="LastName"></label>
+                            <input type="text" class="form-control" asp-for="LastName" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="User.Email"></label>
+                            <input type="email" class="form-control" asp-for="User.Email" disabled>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="Street"></label>
+                            <input type="text" class="form-control" asp-for="Street" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="ZipCode"></label>
+                            <input type="text" class="form-control" asp-for="ZipCode" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="City"></label>
+                            <input type="text" class="form-control" asp-for="City" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="Country"></label>
+                            <input type="text" class="form-control" asp-for="Country" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bank Daten -->
+            <div class="card-content">
+                <h4>Bank Daten</h4>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="BankName"></label>
+                            <input type="text" class="form-control" asp-for="BankName" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="BIC"></label>
+                            <input type="text" class="form-control" asp-for="BIC" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label" asp-for="IBAN"></label>
+                            <input type="text" class="form-control" asp-for="IBAN" required>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-2">
+                        <div class="form-group label-floating">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="optionsCheckboxes" checked="">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>Offene Rechnungen automatisch bezahlen.</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Automatisch bezahlen -->
+                @*<div class="row">
+
+
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="form-group label-floating">*@
+                            <!-- Submit -->
+                            <input type="submit" value="Profil aktualisieren" class="btn btn-primary pull-right" disabled />
+                            <div class="clearfix"></div>
+                            @*<div asp-validation-summary="All"></div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.card input.form-control').each(function () {
+            var elem = $(this);
+
+            // Save current value of element
+            elem.data('oldVal', elem.val());
+
+            // Look for changes in the value
+            elem.bind("propertychange change click keyup input paste", function (event) {
+                // If value has changed...
+                if (elem.data('oldVal') != elem.val()) {
+                    // Updated stored value
+                    elem.data('oldVal', elem.val());
+
+                    // Do action
+                    $('.card input[type="submit"').removeAttr('disabled');
+                }
+            });
+        });
+
+        $('#detailsform').on('submit', function (e) {
+            var form = this;
+            e.preventDefault();
+
+            swal({
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                animation: false,
+                customClass: 'animated fadeIn',
+                showCloseButton: false,
+                showCancelButton: false,
+                showConfirmButton: true,
+                title: 'Vorgang abgeschlossen',
+                text: 'Ihre Änderungen wurden übernommen.',
+                type: 'success'
+            }).then(function () {
+                form.submit();
+            });
+        });
+    });
+</script>
