@@ -1,0 +1,78 @@
+﻿@model Server.Models.GuestViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+        <!-- Favicon-->
+        <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+        <!-- Bootstrap Core Css -->
+        <link href="~/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Animation Css -->
+        <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
+
+        <!-- Custom Css -->
+        <link href="~/css/style.css" rel="stylesheet">
+
+        <!-- Theme -->
+        <link href="~/css/themes/theme-blue-grey.css" rel="stylesheet" />
+
+        <!-- Jquery Core Js -->
+        <script src="~/plugins/jquery/jquery.min.js"></script>
+    </head>
+    <body class="login-page">
+        <div class="login-box">
+            <div class="logo msg">
+                <img class="brand-logo" src="~/images/ScanParkLogoBlack.png" />
+            </div>
+            <!-- Gast-Anmeldung -->
+            <div class="card">
+                <div class="header">
+                    <form asp-controller="Guest" asp-action="OneTimePayment" method="post">
+                        <div class="msg"><h4>Geben Sie hier Ihr Nummernschild und den One-Time Payment Code ein</h4></div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" asp-for="LicensePlate" placeholder="Nummernschild" autofocus required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" asp-for="OneTimePaymentCode" placeholder="Zahlungscode" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <button class="btn btn-block bg-blue-grey waves-effect" type="submit">Anmelden</button>
+                            </div>
+                        </div>
+                        <div asp-validation-summary="All"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap Core Js -->
+        <script src="~/plugins/bootstrap/js/bootstrap.js"></script>
+
+        <!-- Validation Plugin Js -->
+        <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+
+        <!-- Custom Js -->
+        <script src="~/js/admin.js"></script>
+        <script src="~/js/pages/sign-in.js"></script>
+    </body>
+</html>
