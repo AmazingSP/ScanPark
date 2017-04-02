@@ -1,0 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+
+#skeuocard {
+    font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.credit-card-input.no-js p.no-support-warning {
+    color: #ff0000
+}
+.credit-card-input.no-js label+input,
+.credit-card-input.no-js label+select {
+    display: block
+}

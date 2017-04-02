@@ -3,29 +3,52 @@
 
 @using (Html.BeginForm("Guest", "Account", FormMethod.Post, new { @class = "card-body" }))
 {
-    <div class="input-group">
+    <div class="input-group label-floating">
         <span class="input-group-addon">
             <i class="material-icons">directions_car</i>
         </span>
-        <div class="form-group is-empty">
-            <input type="text" asp-for="LicensePlate" class="form-control" placeholder="Kennzeichen">
-            <span asp-validation-for="LicensePlate" class="material-input text-danger"></span>
+
+        <div class="col-md-4 col-md-offset-1" style="padding-left: 0px; margin-left: 0px;">
+            <div class="form-group label-floating">
+                <label class="control-label" asp-for="District"></label>
+                <input type="text" class="form-control" asp-for="District" required style="text-transform:uppercase">
+                <span class="material-input"></span>
+              </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="form-group label-floating">
+                <label class="control-label" asp-for="Identifier"></label>
+                <input type="text" class="form-control" asp-for="Identifier" required style="text-transform:uppercase">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4" style="padding-right: 0px">
+            <div class="form-group label-floating">
+                <label class="control-label" asp-for="Number"></label>
+                <input type="text" class="form-control" asp-for="Number" required style="text-transform:uppercase">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
     </div>
+    
     <div class="input-group">
         <span class="input-group-addon">
             <i class="material-icons">receipt</i>
         </span>
         <div class="form-group is-empty">
-            <input type="text" asp-for="OneTimePaymentCode" class="form-control" placeholder="One-Time Payment Code (Einmalzahlung)">
+            <input type="text" asp-for="OneTimePaymentCode" class="form-control" placeholder="One-Time Payment Code (15-stelliger Code)" style="text-transform:uppercase">
             <span asp-validation-for="OneTimePaymentCode" class="material-inputtext-danger"></span>
         </div>
     </div>
-    <div class="input-group" style="height: 77px">
 
-    </div>
+    <div class="input-group" style="height: 77px"></div>
+
     <div class="card-body text-center">
         <button type="submit" class="btn btn-primary btn-lg" style="width: 165px">Anmelden</button>
     </div>
+
     <div asp-validation-summary="All"></div>
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models
 {
@@ -8,15 +8,11 @@ namespace Server.Models
         [Key]
         public int BillId { get; set; }
 
-        public string LicensePlate { get; set; }
+        [ForeignKey("CarParkId")]
+        public int CarParkId { get; set; }
 
-        public string Date { get; set; }
-
-        public string Entrence { get; set; }
-
-        public string Exit { get; set; }
-
-        public string Duration { get; set; }
+        [ForeignKey("OccurenceId")]
+        public int OccurenceId { get; set; }
 
         public string Amount { get; set; }
 

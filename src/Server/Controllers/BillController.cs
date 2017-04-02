@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Server.Models;
-using Server.Models.Identity;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,37 +22,71 @@ namespace Server.Controllers
         }
 
 
+        /// <summary>
+        /// Gibt eine Übersicht über alle Rechnungen zu dem angemeldeten Benutzer oder Gast zurück
+        /// </summary>
+        /// <param name="plateId">32-stellige Eindeutige Nummer (Nur für Gastbenutzer), sonst null</param>
+        /// <returns>JSON-String mit allen Informationen (Parkhaus Name, vollständiges Kennzeichen, Datum, Einfahrt, Ausfahrt, Dauer, Betrag, Status (bezahlt / unbezahlt), interne Rechnungsnumer</returns>
         [HttpGet]
         [ActionName("Bill")]
-        public async Task<JsonResult> GetBills()
+        public async Task<IActionResult> GetBills(string plateId = default(string))
         {
+            CultureInfo ci = new CultureInfo("de-DE");
+
             RegisteredUserModel currentUser = await _userManager.GetUserAsync(User);
 
-            var profile = await _context.Profiles.SingleOrDefaultAsync(m => m.ProfileId == currentUser.ProfileId);
-
-            var bill3 = await (from x in _context.Bills
-                               where x.BillId == 2
-                               select x).ToListAsync();
-
-            return Json(bill3);
-        }
-
-
-        [HttpPost]
-        [ActionName("Bill")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateBill([Bind("BillId,LicensePlate,Date,Entrence,Exit,Duration,Amount,Paied")] BillModel bill)
-        {
-            if (ModelState.IsValid)
+            if(currentUser != null)
             {
-                _context.Add(bill);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                var bills = await (from bill in _context.Bills
+                                   join carPark in _context.CarParks on bill.CarParkId equals carPark.CarParkId
+                                   join occurence in _context.Occurrences on bill.OccurenceId equals occurence.OccurrenceId
+                                   join plate in _context.LicencePlates on occurence.LicencePlateId equals plate.LicencePlateId
+                                   join car in _context.RegisteredCars on plate.LicencePlateId equals car.RegisteredLicenceId
+                                   where car.RegisteredUserId == currentUser.Id
+                                   select new
+                                   {
+                                       carPark = carPark.CarkParkName,
+                                       licensePlate = string.Concat(plate.District, " ", plate.Identifier, " ", plate.Number),
+                                       date = occurence.Date,
+                                       entrance = occurence.Entrance,
+                                       exit = occurence.Exit,
+                                       duration = occurence.Duration,
+                                       amount = string.Format("{0:#.00} €", bill.Amount),
+                                       paied = bill.Paied,
+                                       billId = bill.BillId
+                                   }).ToListAsync();
+                return Json(bills);
             }
-            return View(bill);
+            else
+            {
+                var bills = await (from bill in _context.Bills
+                                   join carPark in _context.CarParks on bill.CarParkId equals carPark.CarParkId
+                                   join occurence in _context.Occurrences on bill.OccurenceId equals occurence.OccurrenceId
+                                   join plate in _context.LicencePlates on occurence.LicencePlateId equals plate.LicencePlateId
+                                   join car in _context.RegisteredCars on plate.LicencePlateId equals car.RegisteredLicenceId
+                                   where car.RegisteredLicenceId == plateId
+                                   select new
+                                   {
+                                       carPark = carPark.CarkParkName,
+                                       licensePlate = string.Concat(plate.District, " ", plate.Identifier, " ", plate.Number),
+                                       date = occurence.Date,
+                                       entrance = occurence.Entrance,
+                                       exit = occurence.Exit,
+                                       duration = occurence.Duration,
+                                       amount = string.Format("{0:#.00} €", bill.Amount),
+                                       paied = bill.Paied,
+                                       billId = bill.BillId
+                                   }).ToListAsync();
+                return Json(bills);
+            }
         }
 
 
+        /// <summary>
+        /// Methode zum Bezahlen der Rechnung
+        /// </summary>
+        /// <param name="id">interne Rechnungsnummer. Wird über die Methode GetBills bzw. [HttpGet] /Bill/Bill abgerufen</param>
+        /// <returns>JSTON-String mit "success"</returns>
         [HttpPut]
         [ActionName("Bill")]
         public async Task<JsonResult> PayBill(int id)
@@ -64,7 +98,7 @@ namespace Server.Controllers
             _context.SaveChanges();
 
 
-            await Task.Delay(3000);
+            await Task.Delay(0);
             return Json(new { status = "success" });
         }
     }

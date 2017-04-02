@@ -5,11 +5,12 @@
     <!-- Meta Informationen -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta http-equiv="Cache-Control" Content="no-cache">
     <meta http-equiv="Pragma" Content="no-cache">
     <meta http-equiv="Expires" Content="0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.25, maximum-scale=1, user-scalable=no">
+    
 
     <!-- Titel -->
     <title>@ViewBag.Title</title>
@@ -43,13 +44,17 @@
     <link href="~/lib/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
 
 
+    <!-- Stylesheets | jQuery Steps-->
+    <link href="~/lib/jquery-steps/demo/css/jquery.steps.css" rel="stylesheet" />
+
+    
     <!-- Stylesheets | Custom Styles -->
-    <link href="~/css/custom-styles.css" rel="stylesheet" />
     <link href="~/css/custom-fonts.css" rel="stylesheet" />
+    <link href="~/css/custom-styles.css" rel="stylesheet" />
     <link href="~/css/custom-style-materialkit.css" rel="stylesheet" />
 
 
-    <!-- StyleSheets | Ladda -->
+    <!-- Stylesheets | Ladda -->
     <link href="~/lib/ladda-boostrap/dist/ladda-themeless.min.css" rel="stylesheet" />
 
 
@@ -79,53 +84,57 @@
                         <i class="material-icons">search</i><div class="ripple-container"></div>
                     </button>
                 </form>
-                <ul class="nav nav-mobile-menu">
-                    <li>
-                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="material-icons">dashboard</i>
-                            <p class="hidden-lg hidden-md">Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="material-icons">notifications</i>
-                            <span class="notification">5</span>
-                            <p class="hidden-lg hidden-md">Notifications</p>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Mike John responded to your email</a></li>
-                            <li><a href="#">You have 5 new tasks</a></li>
-                            <li><a href="#">You're now friend with Andrew</a></li>
-                            <li><a href="#">Another Notification</a></li>
-                            <li><a href="#">Another One</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="material-icons">person</i>
-                            <p class="hidden-lg hidden-md">Profile</p>
-                        </a>
-                    </li>
-                </ul>
+                @*<ul class="nav nav-mobile-menu">
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">dashboard</i>
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">notifications</i>
+                                <span class="notification">5</span>
+                                <p class="hidden-lg hidden-md">Notifications</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mike John responded to your email</a></li>
+                                <li><a href="#">You have 5 new tasks</a></li>
+                                <li><a href="#">You're now friend with Andrew</a></li>
+                                <li><a href="#">Another Notification</a></li>
+                                <li><a href="#">Another One</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">person</i>
+                                <p class="hidden-lg hidden-md">Profile</p>
+                            </a>
+                        </li>
+                    </ul>*@
                 <ul class="nav">
-                    <li>
-                        <a href="@Url.Action("Details", "Profile")">
-                            <i class="material-icons">person</i>
-                            <p>Benutzerprofil</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Bills", "Profile")">
-                            <i class="material-icons">euro_symbol</i>
-                            <p>Rechnungen</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Cars", "Profile")">
-                            <i class="material-icons">directions_car</i>
-                            <p>Fahrzeuge verwalten</p>
-                        </a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="@Url.Action("Details", "Profile")">
+                                <i class="material-icons">person</i>
+                                <p>Benutzerprofil</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Bills", "Profile")">
+                                <i class="material-icons">euro_symbol</i>
+                                <p>Rechnungen</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Cars", "Profile")">
+                                <i class="material-icons">directions_car</i>
+                                <p>Fahrzeuge verwalten</p>
+                            </a>
+                        </li>
+                    }
                     <li>
                         <a href="@Url.Action("Map", "Profile")">
                             <i class="material-icons">location_on</i>
@@ -133,7 +142,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Logoff", "Account")">
+                        <a href="@Url.Action("Logout", "Account")">
                             <i class="material-icons">exit_to_app</i>
                             <p>Abmelden</p>
                         </a>
@@ -190,12 +199,17 @@
     <script src="~/lib/sweetalert2/dist/sweetalert2.min.js"></script>
 
 
-    <!-- JavaScripts | jQuery Validation -->
-    @*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>*@
-
-    <!-- javaScripts | Ladda -->
+    <!-- JavaScripts | Ladda -->
     <script src="~/lib/ladda-boostrap/dist/spin.min.js"></script>
     <script src="~/lib/ladda-boostrap/dist/ladda.min.js"></script>
+
+    
+    <!-- JavaScript | jQuery Validation -->
+    <script src="~/lib/jquery-validate/dist/jquery.validate.min.js"></script>
+
+    <!-- JavaScripts | jQuery Steps -->
+    <script src="~/lib/jquery-steps/build/jquery.steps.min.js"></script>
+
 
     @RenderSection("Scripts", false)
 </body>

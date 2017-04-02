@@ -130,15 +130,9 @@ namespace Server.Migrations
 
                     b.Property<string>("Amount");
 
-                    b.Property<string>("Date");
+                    b.Property<int>("CarParkId");
 
-                    b.Property<string>("Duration");
-
-                    b.Property<string>("Entrence");
-
-                    b.Property<string>("Exit");
-
-                    b.Property<string>("LicensePlate");
+                    b.Property<int>("OccurenceId");
 
                     b.Property<bool>("Paied");
 
@@ -147,10 +141,84 @@ namespace Server.Migrations
                     b.ToTable("Bills");
                 });
 
-            modelBuilder.Entity("Server.Models.Identity.ProfileModel", b =>
+            modelBuilder.Entity("Server.Models.CarParkModel", b =>
                 {
-                    b.Property<int>("ProfileId")
+                    b.Property<int>("CarParkId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CarkParkName");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Street");
+
+                    b.Property<string>("ZipCode");
+
+                    b.HasKey("CarParkId");
+
+                    b.ToTable("CarParks");
+                });
+
+            modelBuilder.Entity("Server.Models.LicencePlateModel", b =>
+                {
+                    b.Property<string>("LicencePlateId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("District");
+
+                    b.Property<string>("Identifier");
+
+                    b.Property<int>("Number");
+
+                    b.HasKey("LicencePlateId");
+
+                    b.ToTable("LicencePlates");
+                });
+
+            modelBuilder.Entity("Server.Models.OccurrenceModel", b =>
+                {
+                    b.Property<int>("OccurrenceId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Date");
+
+                    b.Property<string>("Duration");
+
+                    b.Property<string>("Entrance");
+
+                    b.Property<string>("Exit");
+
+                    b.Property<string>("LicencePlateId");
+
+                    b.HasKey("OccurrenceId");
+
+                    b.ToTable("Occurrences");
+                });
+
+            modelBuilder.Entity("Server.Models.RegisteredCarModel", b =>
+                {
+                    b.Property<string>("RegisteredCarId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Brand");
+
+                    b.Property<string>("Model");
+
+                    b.Property<string>("RegisteredLicenceId");
+
+                    b.Property<string>("RegisteredUserId");
+
+                    b.HasKey("RegisteredCarId");
+
+                    b.ToTable("RegisteredCars");
+                });
+
+            modelBuilder.Entity("Server.Models.RegisteredUserModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("BIC");
 
@@ -158,61 +226,21 @@ namespace Server.Migrations
 
                     b.Property<string>("City");
 
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
                     b.Property<string>("Country");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("IBAN");
 
                     b.Property<string>("LastName");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<string>("Street");
-
-                    b.Property<string>("ZipCode");
-
-                    b.HasKey("ProfileId");
-
-                    b.ToTable("Profiles");
-                });
-
-            modelBuilder.Entity("Server.Models.Identity.RegisteredPlateModel", b =>
-                {
-                    b.Property<int>("RegisteredPlateId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Brand");
-
-                    b.Property<string>("Model");
-
-                    b.Property<string>("PlateDistrict");
-
-                    b.Property<string>("PlateIdentifier");
-
-                    b.Property<int>("PlateNumber");
-
-                    b.Property<int>("ProfileId");
-
-                    b.HasKey("RegisteredPlateId");
-
-                    b.ToTable("RegisteredPlates");
-                });
-
-            modelBuilder.Entity("Server.Models.Identity.RegisteredUserModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -230,14 +258,16 @@ namespace Server.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<int>("ProfileId");
-
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("Street");
 
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<string>("ZipCode");
 
                     b.HasKey("Id");
 
@@ -248,34 +278,7 @@ namespace Server.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex");
 
-                    b.HasIndex("ProfileId")
-                        .IsUnique();
-
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("Server.Models.OccurrenceModel", b =>
-                {
-                    b.Property<int>("OccurrenceId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Date");
-
-                    b.Property<string>("Dureation");
-
-                    b.Property<string>("Entrance");
-
-                    b.Property<string>("Exit");
-
-                    b.Property<int>("LicensePlate");
-
-                    b.Property<bool>("Paied");
-
-                    b.Property<string>("Price");
-
-                    b.HasKey("OccurrenceId");
-
-                    b.ToTable("Occurrences");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -288,7 +291,7 @@ namespace Server.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Server.Models.Identity.RegisteredUserModel")
+                    b.HasOne("Server.Models.RegisteredUserModel")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -296,7 +299,7 @@ namespace Server.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Server.Models.Identity.RegisteredUserModel")
+                    b.HasOne("Server.Models.RegisteredUserModel")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -309,17 +312,9 @@ namespace Server.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Server.Models.Identity.RegisteredUserModel")
+                    b.HasOne("Server.Models.RegisteredUserModel")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Server.Models.Identity.RegisteredUserModel", b =>
-                {
-                    b.HasOne("Server.Models.Identity.ProfileModel", "Profile")
-                        .WithOne("User")
-                        .HasForeignKey("Server.Models.Identity.RegisteredUserModel", "ProfileId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

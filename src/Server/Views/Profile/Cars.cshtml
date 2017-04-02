@@ -5,7 +5,7 @@
 			<p class="category">Hier haben Sie einen Überblick über Ihre registrierten Kennzeichen</p>
 		</div>
 		<div class="card-content table-responsive">
-			<table class="table" id="carstable">
+			<table class="table table-striped table-hover" id="carstable">
 				<thead class="text-primary">
 					<tr>
 						<th>Kennzeichen</th>
@@ -65,7 +65,7 @@
 				{ width: 200, targets: 0 }
 			],
 			rowCallback: function (row, data, index) {
-				$(row).find('td:eq(0)').html('<div class="sign-container-small"><div class="LK">' + data.plateDistrict + '</div><div class="KN">' + data.plateIdentifier + '</div><div class="ZL">' + data.plateNumber + '</div></div>');
+				$(row).find('td:eq(0)').html('<div class="sign-container-small"><div class="LK">' + data.district + '</div><div class="KN">' + data.identifier + '</div><div class="ZL">' + data.number + '</div></div>');
 			},
 			dom: 'Bfrtip',
 
@@ -84,22 +84,22 @@
 									'<input id="sign-kn" type="text" class="KN" maxlength="2"></input>' +
 									'<input id="sign-zl" type="text" class="ZL" maxlength="4"></input>' +
 								'</div>' +
-					            '<div class="row">' +
-						            '<div class="col-md-4 col-md-offset-2">' +
-							            '<div class="form-group label-floating">' +
-								            '<label class="control-label"></label>' +
-								            'Marke: <input type="text" id="brand" class="form-control" placeholder="Marke" required>' +
-								            '<span class="material-input"></span>' +
-							            '</div>' +
-						            '</div>' +
-						            '<div class="col-md-4">' +
-							            '<div class="form-group label-floating">' +
-								            '<label class="control-label"></label>' +
-								            'Modell: <input type="text" id="model" class="form-control" placeholder="Modell" required>' +
-								            '<span class="material-input"></span>' +
-							            '</div>' +
-						            '</div>' +
-					            '</div>',
+								'<div class="row">' +
+									'<div class="col-md-4 col-md-offset-2">' +
+										'<div class="form-group label-floating">' +
+											'<label class="control-label"></label>' +
+											'Marke: <input type="text" id="brand" class="form-control" placeholder="Marke" required>' +
+											'<span class="material-input"></span>' +
+										'</div>' +
+									'</div>' +
+									'<div class="col-md-4">' +
+										'<div class="form-group label-floating">' +
+											'<label class="control-label"></label>' +
+											'Modell: <input type="text" id="model" class="form-control" placeholder="Modell" required>' +
+											'<span class="material-input"></span>' +
+										'</div>' +
+									'</div>' +
+								'</div>',
 							width: 800,
 							animation: false,
 							allowOutsideClick: false,
@@ -110,25 +110,35 @@
 							preConfirm: function () {
 								return new Promise(function (resolve) {
 									var data = {
-									    PlateDistrict: $('#sign-lk').val(),
-									    PlateIdentifier: $('#sign-kn').val(),
-									    PlateNumber: $('#sign-zl').val(),
-									    Brand: $('#brand').val(),
-									    Model: $('#model').val()
+										district: $('#sign-lk').val(),
+										identifier: $('#sign-kn').val(),
+										number: $('#sign-zl').val(),
+										brand: $('#brand').val(),
+										model: $('#model').val()
 									}
 									resolve(data);
 								});
 							}
 						}).then(
 						  function (result) {
-							  console.log(result);
 							  $.ajax({
 								  url: '/Car/Car',
 								  type: 'POST',
-								  contentType: 'application/json',
-								  data: JSON.stringify(result),
+								  data: result,
 								  success: function (result) {
-									  table.ajax.reload(null, false);
+									  if (result.response == "error") {
+										  swal({
+											  title: "Fehler",
+											  text: result.message,
+											  type: "error"
+										  });
+									  } else {
+										  swal({
+											  title: "Kennzeichen wurde angelegt",
+											  text: "",
+											  type: "success"
+										  }, table.ajax.reload(null, false));
+									  }
 								  }
 							  })
 						  }, function (dismiss) {
@@ -139,17 +149,19 @@
 			]
 		});
 
-		// Fahrzeug editieren
+		// Fahrzeug bearbeiten
 		$('#carstable').on('click', 'button.edit', function (e) {
 			var plate = table.row($(this).parents('tr')).data();
+			console.log("PUT");
+			console.log(plate);
 
 			swal({
 				title: "Kennzeichen bearbeiten",
 				html:
 					'<div class="sign-container-big">' +
-						'<input id="sign-lk" type="text" class="LK" placeholder="' + plate.plateDistrict + '" value="' + plate.plateDistrict + '" maxlength="3"></input>' +
-						'<input id="sign-kn" type="text" class="KN" placeholder="' + plate.plateIdentifier + '" value="' + plate.plateIdentifier + '" maxlength="2"></input>' +
-						'<input id="sign-zl" type="text" class="ZL" placeholder="' + plate.plateNumber + '" value="' + plate.plateNumber + '" maxlength="4"></input>' +
+						'<input id="sign-lk" type="text" class="LK" placeholder="' + plate.district + '" value="' + plate.district + '" maxlength="3"></input>' +
+						'<input id="sign-kn" type="text" class="KN" placeholder="' + plate.identifier + '" value="' + plate.identifier + '" maxlength="2"></input>' +
+						'<input id="sign-zl" type="text" class="ZL" placeholder="' + plate.number + '" value="' + plate.number + '" maxlength="4"></input>' +
 					'</div>' +
 					'<div class="row">' +
 						'<div class="col-md-4 col-md-offset-2">' +
@@ -177,28 +189,26 @@
 				preConfirm: function () {
 					return new Promise(function (resolve) {
 						var data = {
-							PlateDistrict: $('#sign-lk').val(),
-							PlateIdentifier: $('#sign-kn').val(),
-							PlateNumber: $('#sign-zl').val(),
-							Brand: $('#brand').val(),
-							Model: $('#model').val(),
-							RegisteredPlateId: plate.registeredPlateId
+							district: $('#sign-lk').val(),
+							identifier: $('#sign-kn').val(),
+							number: $('#sign-zl').val(),
+							brand: $('#brand').val(),
+							model: $('#model').val(),
+							plateId: plate.plateId
 						}
 						resolve(data);
 					});
 				}
 			}).then(
 				function (result) {
-					console.log(result);
 					$.ajax({
 						url: '/Car/Car',
 						type: 'PUT',
-						contentType: 'application/json',
-						data: JSON.stringify(result),
+						data: result,
 						success: function (pl) {
 							swal({
 								title: 'Vorgang erfolgreich',
-								text: 'Das Nummernschild wurde geändert auf: ' + result.PlateDistrict + ' ' + result.PlateIdentifier + ' ' + result.PlateNumber,
+								text: 'Das Nummernschild wurde geändert auf: ' + result.district + ' ' + result.identifier + ' ' + result.number,
 								type: 'success',
 								animation: false,
 								customClass: 'animated fadeIn'
@@ -228,16 +238,31 @@
 				$.ajax({
 					url: "/Car/Car",
 					type: "DELETE",
-					data: { id: plate.registeredPlateId },
+					data: { id: plate.plateId },
 					success: function (response) {
-						table.ajax.reload(null, false);
-						swal({
-							title: 'Vorgang erfolgreich',
-							text: 'Das Fahrzeug wurde gelöscht!',
-							type: 'success',
-							animation: false,
-							customClass: 'animated fadeIn'
-						});
+
+					    if (response == "unpaid")
+					    {
+					        swal({
+					            title: 'Vorgang nicht möglich',
+					            text: 'Sie haben noch unbezahlte Rechnungen. Bitte begleichn Sie zuerst ihre Rechnung bevor Sie das Fahrzeug löschen möchten.',
+					            type: 'error',
+					            animation: false,
+					            customClass: 'animated fadeIn'
+					        });
+					    }
+
+					    if (response == "success")
+					    {
+					        table.ajax.reload(null, false);
+					        swal({
+					            title: 'Vorgang erfolgreich',
+					            text: 'Das Fahrzeug wurde gelöscht!',
+					            type: 'success',
+					            animation: false,
+					            customClass: 'animated fadeIn'
+					        });
+					    }
 					}
 				});
 			}, function (dismiss) {

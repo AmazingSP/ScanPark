@@ -8,7 +8,7 @@ namespace Server.Models
         [Key]
         public int OccurrenceId { get; set; }
 
-        public int LicensePlate { get; set; }
+        public string LicencePlateId { get; set; }
 
         public string Date { get; set; }
 
@@ -16,10 +16,7 @@ namespace Server.Models
 
         public string Exit { get; set; }
 
-        public string Dureation { get; set; }
+        public string Duration { get; set; }
 
-        public string Price { get; set; }
-
-        public bool Paied { get; set; }
     }
 }

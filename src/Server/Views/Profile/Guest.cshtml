@@ -1,0 +1,485 @@
+﻿@model GuestViewModel
+
+<div class="col-md-10 col-md-offset-1">
+	<div class="card">
+		<div class="card-header" data-background-color="purple">
+			<h3 class="title">Rechnungsübersicht</h3>
+			<p class="category">Hier haben Sie einen Überblick über Ihre Parkvorgänge sowie offene und bezahlte Rechnungen</p>
+		</div>
+		<div class="card-content table-responsive">
+			<table class="table table-striped table-hover" id="billstable">
+				<thead class="text-primary">
+					<tr>
+						<th>Parkhaus</th>
+						<th>Kennzeichen</th>
+						<th>Datum</th>
+						<th>Einfahrt</th>
+						<th>Ausfahrt</th>
+						<th>Dauer</th>
+						<th>Betrag</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		// Tabelle formatieren und mit Inhalt befüllen
+		var table = $('#billstable').DataTable({
+			"bPaginate": true,
+			"sPaginationType": "full_numbers",
+			"bSortClasses": false,
+			"bLengthChange": false,
+			"bFilter": false,
+			"bInfo": false,
+			"sInfoEmpty": "Keine Einträge vorhanden",
+			"bAutoWidth": false,
+			"oLanguage": {
+				"sSearch": "Suche: ",
+				"sZeroRecords": "Keine Einträge vorhanden",
+				"oPaginate": {
+					"sFirst": "Erste Seite",
+					"sPrevious": "Vorherige Seite",
+					"sNext": "Nächste Seite",
+					"sLast": "Letzte Seite"
+				}
+			},
+			"drawCallback": function () {
+				$('button.mdl-button').addClass("btn btn-simple");
+			},
+			"ajax": {
+				"url": "/Bill/Bill",
+				"type": "GET",
+				"data": {
+					// <ID EINTRAGEN> data.
+				    // plateId: "8e5a1fad-d94d-4698-b623-22241683b29b"
+				    plateId : "@Model.OneTimePaymentCode"
+				},
+				"dataSrc": "",
+			},
+			"columns": [
+				{ "data": "carPark" },
+				{ "data": "licensePlate" },
+				{ "data": "date" },
+				{ "data": "entrance" },
+				{ "data": "exit" },
+				{ "data": "duration" },
+				{ "data": "amount" },
+				{ "data": "paied" }
+			],
+			columnDefs: [
+				{ width: 200, targets: 0 }
+			],
+			rowCallback: function (row, data, index) {
+				if (data.paied == false) {
+					$(row).find('td:eq(7)').html('<button class="btn btn-warning ladda-button" data-style="zoom-in" data-size="s"><i class="material-icons"></i> Jetzt bezahlen</button>');
+				} else {
+					$(row).find('td:eq(7)').html('<span class="text-success">Bezahlt</span>');
+				}
+			}
+		});
+
+		// Editieren Button wurde geklickt
+		$('#billstable tbody').on('click', 'button', function () {
+			var data = table.row($(this).parents('tr')).data();
+
+			// Zahlungsdialog anzeigen
+			swal({
+				allowEscapeKey: false,
+				allowOutsideClick: false,
+				width: 800,
+				animation: false,
+				customClass: 'animated fadeIn',
+				imageUrl: "../img/cards/cards.png",
+				imageWidth: 100,
+				imageHeight: 88,
+				showCloseButton: true,
+				showCancelButton: false,
+				showConfirmButton: false,
+				title: 'Rechnung bezahlen',
+				html:
+				'<form id="paymentwizard">' +
+					// 1. Schritt
+					'<h3>Zahlungsart wählen</h3>' +
+					'<fieldset>' +
+						'<h4>Bitte wählen Sie Ihre Zahlungsmethode</h4>' +
+						'<div class="cc-selector">' +
+							'<div>' +
+								'<input checked="checked" id="americanexpress" type="radio" name="credit-card" value="americanexpress" />' +
+								'<label class="drinkcard-cc americanexpress" for="americanexpress"></label>' +
+							'</div>' +
+							'<div>' +
+								'<input id="dinersclub" type="radio" name="credit-card" value="dinersclub" />' +
+								'<label class="drinkcard-cc dinersclub"for="dinersclub"></label>' +
+							'</div>' +
+							'<div>' +
+								'<input id="maestro" type="radio" name="credit-card" value="maestro" />' +
+								'<label class="drinkcard-cc maestro"for="maestro"></label>' +
+							'</div>' +
+							'<div>' +
+								'<input id="mastercard" type="radio" name="credit-card" value="mastercard" />' +
+								'<label class="drinkcard-cc mastercard"for="mastercard"></label>' +
+							'</div>' +
+							'<div>' +
+								'<input id="visa" type="radio" name="credit-card" value="visa" />' +
+								'<label class="drinkcard-cc visa"for="visa"></label>' +
+							'</div>' +
+							'<div>' +
+								'<input id="paypal" type="radio" name="credit-card" value="paypal" />' +
+								'<label class="drinkcard-cc paypal"for="paypal"></label>' +
+							'</div>' +
+						'</div>' +
+					'</fieldset>' +
+
+
+
+					// 2. Schritt
+					'<h3>Daten eingeben</h3>' +
+					'<fieldset>' +
+					'<div class="checkout">' +
+						'<div class="checkout__inner">' +
+							'<div class="ccard">' +
+							  '<div class="flip">' +
+								'<div class="flip__front shown">' +
+								  '<div class="ccard__front">' +
+									'<div class="ccard__logo top-right"></div>' +
+									'<div class="ccard__chip"></div>' +
+									'<div class="ccard__number"></div>' +
+									'<div class="ccard__holder-name"></div>' +
+									'<div class="ccard__exp"></div>' +
+								  '</div>' +
+								'</div>' +
+								'<div class="flip__back">' +
+								  '<div class="ccard__back">' +
+									'<div class="ccard__strip"></div>' +
+									'<div class="ccard__ccv"></div>' +
+									'<div class="ccard__logo bottom-right"></div>' +
+								  '</div>' +
+								'</div>' +
+							  '</div>' +
+							'</div>' +
+							'<div class="form">' +
+							  '<fieldset required>' +
+								'<label class="form__label">Kartennummer</label>' +
+								'<input class="form__input small" id="ccard-number-1" type="tel" maxlength="4" placeholder="1234" style="border: 1px solid #ccc;" required>' +
+								'<input class="form__input small" id="ccard-number-2" type="tel" maxlength="4" placeholder="5678" style="border: 1px solid #ccc;" required>' +
+								'<input class="form__input small" id="ccard-number-3" type="tel" maxlength="4" placeholder="9000" style="border: 1px solid #ccc;" required>' +
+								'<input class="form__input small" id="ccard-number-4" type="tel" maxlength="4" placeholder="4321" style="border: 1px solid #ccc;" required>' +
+							  '</fieldset>' +
+							  '<fieldset>' +
+								'<label class="form__label">Karteninhaber</label>' +
+								'<input class="form__input large" id="ccard-holder-name" type="text" placeholder="Name" style="border: 1px solid #ccc;">' +
+							  '</fieldset>' +
+							  '<fieldset>' +
+								'<label class="form__label">Gültig bis</label>' +
+								'<select class="form__select small" id="ccard-exp-month">' +
+								  '<option value="">MM</option>' +
+								  '<option value="01">01</option>' +
+								  '<option value="02">02</option>' +
+								  '<option value="03">03</option>' +
+								  '<option value="04">04</option>' +
+								  '<option value="05">05</option>' +
+								  '<option value="06">06</option>' +
+								  '<option value="07">07</option>' +
+								  '<option value="08">08</option>' +
+								  '<option value="09">09</option>' +
+								  '<option value="10">10</option>' +
+								  '<option value="11">11</option>' +
+								  '<option value="12">12</option>' +
+								'</select>' +
+								'<select class="form__select small" id="ccard-exp-year">' +
+								  '<option value="">YYYY</option>' +
+								  '<option value="16">2016</option>' +
+								  '<option value="17">2017</option>' +
+								  '<option value="18">2018</option>' +
+								  '<option value="19">2019</option>' +
+								  '<option value="20">2020</option>' +
+								  '<option value="21">2021</option>' +
+								  '<option value="22">2022</option>' +
+								  '<option value="23">2023</option>' +
+								  '<option value="24">2024</option>' +
+								  '<option value="25">2025</option>' +
+								'</select>' +
+							  '</fieldset>' +
+							  '<fieldset>' +
+								'<label class="form__label" for="ccard-ccv">PRÜFNUMMER</label>' +
+								'<input class="form__input small" id="ccard-ccv" type="tel" maxlength="3" placeholder="123" style="border: 1px solid #ccc;">' +
+							  '</fieldset>' +
+							'</div>' +
+						  '</div>' +
+						'</div>' +
+					'</fieldset>' +
+
+
+
+					// 3. Schritt
+					'<h3>Zusammenfassung</h3>' +
+					'<fieldset>' +
+						'<div class="col-md-6">' +
+							'<div class="form-group label-floating">' +
+								'<label class="control-label">Parkhaus</label>' +
+								'<input class="form-control" disabled="" value="' + data.carPark + '" >' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+
+							'<div class="form-group label-floating">' +
+								'<label class="control-label">Datum</label>' +
+								'<input class="form-control" disabled="" value="' + data.date + '" >' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+
+							'<div class="form-group label-floating">' +
+								'<label class="control-label">Dauer</label>' +
+								'<input class="form-control" disabled="" value="' + data.duration + '" >' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+
+							'<div class="form-group label-floating">' +
+								'<label class="control-label">Nummernschild</label>' +
+								'<input class="form-control" disabled="" value="' + data.licensePlate + '" >' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+
+							'<div class="form-group label-floating">' +
+								'<label class="control-label">Karteninhaber</label>' +
+								'<input id="cholder" class="form-control" disabled="" ">' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+
+
+							'<div class="form-group label-floating">' +
+								'<label class="control-label">Betrag</label>' +
+								'<input id="amount" class="form-control" disabled="" ">' +
+								'<span class="material-input"></span>' +
+							'</div>' +
+
+						'</div>' +
+					'</fieldset>' +
+				'</form>'
+			}).then(function () {
+			}, function () {
+				swal({
+					title: 'Vorgang abgebrochen',
+					type: 'error',
+					animation: false,
+					customClass: 'animated fadeIn',
+					confirmButtonClass: "btn btn-info waves-effect",
+					allowEscapeKey: false,
+					allowOutsideClick: false
+				});
+			});
+
+
+			var form = $('#paymentwizard').show();
+			form.steps({
+				headerTag: 'h3',
+				bodyTag: 'fieldset',
+				transitionEffect: 'fade',
+				transitionEffectSpeed: 300,
+				labels: {
+					previous: "Zurück",
+					next: "Weiter",
+					finish: "Jetzt bezahlen"
+				},
+				onInit: function (event, currentIndex) {
+					// Größe der Tabs berechnen
+					var $tab = $(event.currentTarget).find('ul[role="tablist"] li');
+					var tabCount = $tab.length;
+					$tab.css('width', (100 / tabCount) + '%');
+				},
+				onStepChanging: function (event, currentIndex, newIndex) {
+
+					// Error handling
+					if (currentIndex > newIndex) { return true; }
+
+
+					if (currentIndex < newIndex) {
+						form.find('.body:eq(' + newIndex + ') label.error').remove();
+						form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
+					}
+
+					// 2a. Logo bzw. Maske anpassen: Kreditkarte oder PayPal
+					if (newIndex == 1) {
+						var sel = form.find('input[type=radio]:checked').val();
+						if (sel === "paypal") {
+							// PayPal anzeigen
+							// Block ausschreiben
+						} else {
+							// Kreditkarte anzeigen
+							$("div.ccard__logo.top-right").css("width", "300")
+							$(".ccard__logo").css("background-image", 'url("../img/cards/' + sel + '_logo.png")');
+						}
+					}
+
+					// 2b. Form Validierung
+					if (currentIndex == 1) {
+						// Eingaben validieren
+						if (!$("#ccard-number-1").val() ||
+							!$("#ccard-number-2").val() ||
+							!$("#ccard-number-3").val() ||
+							!$("#ccard-number-4").val() ||
+							!$("#ccard-holder-name").val() ||
+							!$("#ccard-exp-month") ||
+							!$("#ccard-ccv").val())
+						{
+							return false;
+						}
+					}
+
+
+					// 3. Zusammenfassung
+					if (newIndex == 2) {
+						if (form.find('input[type=radio]:checked').val() === "paypal") {
+							// PayPal anzeigen
+							// Block ausschreiben
+						} else {
+							// Kreditkarte anzeigen
+							form.find('#cholder').val($('#ccard-holder-name').val());
+							form.find('#amount').val(data.amount);
+						}
+					}
+
+					form.validate().settings.ignore = ':disabled,:hidden';
+
+					return form.valid();
+				},
+				onStepChanged: function (event, currentIndex, priorIndex) {
+				},
+				onFinishing: function (event, currentIndex) {
+					form.validate().settings.ignore = ':disabled';
+					return form.valid();
+				},
+				onFinished: function (event, currentIndex) {
+					swal.clickConfirm();
+
+					swal({
+						title: "Vorgang wird bearbeitet",
+						text: "Bitte warten",
+						timer: 2000,
+						imageUrl: "../img/preloader.gif",
+						imageWidth: 128,
+						imageHeight: 128,
+						animation: false,
+						customClass: 'animated fadeIn',
+						allowEscapeKey: false,
+						allowOutsideClick: false,
+						showCloseButton: false,
+						showCancelButton: false,
+						showConfirmButton: false
+					}).then(function () { },
+							function () {
+								$.ajax({
+									url: "/Bill/Bill",
+									type: "PUT",
+									data: { id: data.billId },
+									dataType: "",
+									success: function (response) {
+										table.ajax.reload(null, false);
+
+										swal({
+											title: 'Bezahlvorgang abgeschlossen.',
+											text: 'Vielen Dank, dass Sie ScanPark genutzt haben!',
+											type: 'success',
+											animation: false,
+											customClass: 'animated fadeIn',
+											confirmButtonClass: "btn btn-info waves-effect",
+											allowEscapeKey: false,
+											allowOutsideClick: false
+										});
+									}
+								})
+							}).catch(swal.noop);
+				}
+
+			});
+
+			var checkout = {
+				el: {
+					// Inputs
+					cardNumberInput: $('[id^="ccard-number"]'),
+					cardHolderNameInput: $("#ccard-holder-name"),
+					cardExpInput: $('[id^="ccard-exp"]'),
+					cardExpMonthInput: $("#ccard-exp-month"),
+					cardExpYearInput: $("#ccard-exp-year"),
+					cardCCVInput: $("#ccard-ccv"),
+					// Containers
+					cardNumberContainer: $(".ccard__number"),
+					cardHolderNameContainer: $(".ccard__holder-name"),
+					cardExpContainer: $(".ccard__exp"),
+					cardCCVContainer: $(".ccard__ccv"),
+					// Flip
+					flip: $(".flip"),
+					flipFront: $(".flip__front"),
+					flipBack: $(".flip__back")
+				},
+				// Main init
+				init: function () {
+					checkout.bindUIActions();
+				},
+				// Binding UI actions
+				bindUIActions: function () {
+					checkout.el.cardNumberInput.on("keyup", checkout.displayCardNumber);
+					checkout.el.cardHolderNameInput.on("keyup", checkout.displayCardName);
+					checkout.el.cardExpInput.on("change", checkout.displayCardExp);
+					checkout.el.cardCCVInput.on("keyup", checkout.displayCardCCV);
+					checkout.el.cardCCVInput.on("focus", checkout.flipCard);
+					checkout.el.cardCCVInput.on("blur", checkout.resetFlip);
+				},
+				// Displaying card number
+				displayCardNumber: function () {
+					var cardNumber = "";
+					// Building the credit card number 
+					checkout.el.cardNumberInput.each(function () {
+						cardNumber += $(this).val() + ' ';
+					});
+					// Auto-focus next input if character count is greater than 3
+					$(this).val().length > 3 ?
+						$(this).next().focus() : false;
+					// Auto-focus previous input if character count is 0
+					$(this).val() == "" ?
+						$(this).prev().focus() : false;
+					// Displaying credit card number
+					checkout.el.cardNumberContainer.html(cardNumber);
+				},
+				// Displaying card name
+				displayCardName: function () {
+					checkout.el.cardHolderNameContainer.html(checkout.el.cardHolderNameInput.val());
+				},
+				// Displaying expiration date
+				displayCardExp: function () {
+					// Displaying nothing if both date fields are empty
+					if (checkout.el.cardExpMonthInput.val() === "" && checkout.el.cardExpYearInput.val() === "") {
+						checkout.el.cardExpContainer.html("");
+					} else {
+						checkout.el.cardExpContainer.html(checkout.el.cardExpMonthInput.val() + "/" + checkout.el.cardExpYearInput.val());
+					}
+				},
+				// Displaying card ccv
+				displayCardCCV: function () {
+					checkout.el.cardCCVContainer.html(checkout.el.cardCCVInput.val());
+				},
+				// Showing back of the card
+				flipCard: function () {
+					checkout.el.flip.css("transform", "rotateY(180deg)");
+					checkout.el.flipFront.removeClass("shown");
+					checkout.el.flipBack.addClass("shown");
+				},
+				// Showing front of the card
+				resetFlip: function () {
+					checkout.el.flip.removeAttr("style");
+					checkout.el.flipBack.removeClass("shown");
+					checkout.el.flipFront.addClass("shown");
+				}
+			};
+
+			checkout.init();
+
+			$('.cc-selector input').css("border", "").css("float", "left");
+		});
+
+	});
+</script>

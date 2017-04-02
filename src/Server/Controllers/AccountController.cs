@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Server.Models;
-using Server.Models.Identity;
 using Server.Models.ViewModels;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Server.Controllers
@@ -18,7 +20,6 @@ namespace Server.Controllers
         {
             _userManager = userManager;
             _signInManagerForRegisteredUsers = signInManagerForRegisteredusers;
-            //_signInManagerForGuests = signInManagerForGuests;
             _context = context;
         }
 
@@ -26,11 +27,15 @@ namespace Server.Controllers
         // View Landingpage
         public IActionResult Index()
         {
-            return View();  
+            return View();
         }
 
 
-        // Methode Login
+        /// <summary>
+        /// Login Methode zur Authentifizierung von regisrierten Benutzern.
+        /// </summary>
+        /// <param name="model">Die Felder "E-Mail Adresse" und "Kennwort" werden über das Model übergeben</param>
+        /// <returns>Gibt keinen Wert zurück sondern leitet den Benutzer nach erfolgreicher Anmeldung zur Benutzerseite weiter</returns>
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -52,69 +57,74 @@ namespace Server.Controllers
         }
 
 
-        // Methode Logoff
-        public async Task<IActionResult> Logoff()
+        /// <summary>
+        /// Logout Methode zum Abmelden. Sowohl für registrierte Benutzer als auch Gastbenutzer
+        /// </summary>
+        /// <returns>Leitet den Benutzer nach dem Logout zurück zur Landing Page (Login, Registrieren, Gast)</returns>
+        public async Task<IActionResult> Logout()
         {
             await _signInManagerForRegisteredUsers.SignOutAsync();
             return RedirectToAction("Index");
         }
 
 
-        // Methode Registrierung
+        /// <summary>
+        /// Registrierung Methode für neue Benutzer.
+        /// </summary>
+        /// <param name="model">Die Felder "E-Mail Adresse" und "Kennwort" werden über das Model übergeben</param>
+        /// <returns>Gibt keinen Wert zurück sondern leitet den Benutzer zur Profilübersicht weiter</returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                RegisteredUserModel user = new RegisteredUserModel { UserName = model.Email, Email = model.Email, Profile = new ProfileModel() };
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
 
-                if (result.Succeeded)
-                {
-                    await _signInManagerForRegisteredUsers.SignInAsync(user, false);
-                    return RedirectToAction("Details", "Profile");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Registrierung fehlgeschlagen");
-                }
+            RegisteredUserModel user = new RegisteredUserModel { UserName = model.Email, Email = model.Email };
+            IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _signInManagerForRegisteredUsers.SignInAsync(user, false);
+                return RedirectToAction("Details", "Profile");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Registrierung fehlgeschlagen");
 
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-            }
 
-            return View();
+                return RedirectToAction("Register", "Account");
+            }
         }
 
 
-        // View Guest
-        [HttpGet]
-        public JsonResult Guest(GuestViewModel model)
+        /// <summary>
+        /// Gast Methode. Dient zum Einloggen mit einem Einmal-Zahlungscode
+        /// </summary>
+        /// <param name="model">Es werden die Felder "Landkreis", "Kennung" und "Nummer" über das Model übergeben</param>
+        /// <returns>Gibt keinen Wert zurück sondern leitet den Gast zur Rechungsübersicht.</returns>
+        [HttpPost]
+        public async Task<IActionResult> Guest(GuestViewModel model)
         {
-            if (ModelState.IsValid)
+            LicencePlateModel plateId = await (from plate in _context.LicencePlates
+                                               where plate.District.Equals(model.District, StringComparison.OrdinalIgnoreCase)
+                                               where plate.Identifier.Equals(model.Identifier, StringComparison.OrdinalIgnoreCase)
+                                               where plate.Number == model.Number
+                                               select plate).SingleOrDefaultAsync();
+
+            if (plateId == null)
             {
-                
+                ModelState.AddModelError(string.Empty, "Unbekanntes Kennzeichen oder falscher One-Time Paymentcode");
+                return RedirectToAction("Index", "Account");
             }
-            return Json(new string[] { model.LicensePlate, model.OneTimePaymentCode });
-            //if (ModelState.IsValid)
-            //{
-            //    var result = await _signInManagerForGuests.PasswordSignInAsync(model.LicensePlate, model.OneTimePaymentCode, false, false);
 
-            //    if (result.Succeeded)
-            //    {
-            //        // WEITERLEITUNG ANPASSEN !!!!
-            //        return RedirectToAction("Details", "Profile");
-            //        // WEITERLEITUNG ANPASSEN !!!!
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError(string.Empty, "Unbekanntest Kennzeichen oder falscher One-Time Paymentcode");
-            //    }
-            //}
+            if (plateId.LicencePlateId.Equals(model.OneTimePaymentCode))
+            {
+                return RedirectToAction("Guest", "Profile", model);
+            }
 
-            //return View();
+            return RedirectToAction("Index", "Account");
         }
     }
 }
