@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Server.Models;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,8 +64,8 @@ namespace Server.Controllers
                                    join carPark in _context.CarParks on bill.CarParkId equals carPark.CarParkId
                                    join occurence in _context.Occurrences on bill.OccurenceId equals occurence.OccurrenceId
                                    join plate in _context.LicencePlates on occurence.LicencePlateId equals plate.LicencePlateId
-                                   join car in _context.RegisteredCars on plate.LicencePlateId equals car.RegisteredLicenceId
-                                   where car.RegisteredLicenceId == plateId
+                                   //join car in _context.RegisteredCars on plate.LicencePlateId equals car.RegisteredLicenceId
+                                   where occurence.LicencePlateId.Equals(plateId, StringComparison.OrdinalIgnoreCase)
                                    select new
                                    {
                                        carPark = carPark.CarkParkName,

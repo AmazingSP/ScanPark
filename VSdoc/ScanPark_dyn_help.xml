@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DynamicHelp xmlns="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xsi:schemaLocation="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd">	
+   <LINKGROUP ID="ScanPark" Title="SOLUTION-WIDE PROPERTIES Reference Help" Priority="2100">
+      <GLYPH Expanded="vs:/ctxhelp_show.gif" Collapsed="vs:/ctxhelp_hide.gif"/>
+   </LINKGROUP>
+
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.AccountController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000002.html" LinkGroup="ScanPark">AccountController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.AccountController.AccountController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000003.html" LinkGroup="ScanPark">AccountController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.CarController.AddCar" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000010.html" LinkGroup="ScanPark">AddCar Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.BillModel.Amount" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000043.html" LinkGroup="ScanPark">Amount Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000037.html" LinkGroup="ScanPark">ApplicationDbContext Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext.ApplicationDbContext" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000038.html" LinkGroup="ScanPark">ApplicationDbContext Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.BIC" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000066.html" LinkGroup="ScanPark">BIC Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.BankName" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000064.html" LinkGroup="ScanPark">BankName Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.BillController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000009.html" LinkGroup="ScanPark">BillController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.BillController.BillController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000000A.html" LinkGroup="ScanPark">BillController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.BillModel.BillId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000040.html" LinkGroup="ScanPark">BillId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.BillModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000003F.html" LinkGroup="ScanPark">BillModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Bills" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000001E.html" LinkGroup="ScanPark">Bills Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext.Bills" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000003C.html" LinkGroup="ScanPark">Bills Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredCarModel.Brand" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000005B.html" LinkGroup="ScanPark">Brand Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.CarController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000000D.html" LinkGroup="ScanPark">CarController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.CarController.CarController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000000E.html" LinkGroup="ScanPark">CarController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.BillModel.CarParkId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000041.html" LinkGroup="ScanPark">CarParkId Property {Server.Models.BillModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.CarParkModel.CarParkId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000046.html" LinkGroup="ScanPark">CarParkId Property {Server.Models.CarParkModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.CarParkModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000045.html" LinkGroup="ScanPark">CarParkModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext.CarParks" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000003D.html" LinkGroup="ScanPark">CarParks Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.CarParkModel.CarkParkName" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000047.html" LinkGroup="ScanPark">CarkParkName Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Cars" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000001F.html" LinkGroup="ScanPark">Cars Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.CarParkModel.City" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000004A.html" LinkGroup="ScanPark">City Property {Server.Models.CarParkModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.City" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000062.html" LinkGroup="ScanPark">City Property {Server.Models.RegisteredUserModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Startup.Configure" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000006C.html" LinkGroup="ScanPark">Configure Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Startup.ConfigureServices" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000006B.html" LinkGroup="ScanPark">ConfigureServices Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.RegisterViewModel.ConfirmPassword" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000035.html" LinkGroup="ScanPark">ConfirmPassword Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.Country" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000063.html" LinkGroup="ScanPark">Country Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.HomeController.CreateOccurence" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000017.html" LinkGroup="ScanPark">CreateOccurence Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.OccurrenceModel.Date" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000053.html" LinkGroup="ScanPark">Date Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.CarController.DeleteCar" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000012.html" LinkGroup="ScanPark">DeleteCar Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Details" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000001B.html" LinkGroup="ScanPark">Details Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.LicencePlateModel.District" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000004D.html" LinkGroup="ScanPark">District Property {Server.Models.LicencePlateModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.GuestViewModel.District" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000002B.html" LinkGroup="ScanPark">District Property {Server.Models.ViewModels.GuestViewModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Migrations.First.Down" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000025.html" LinkGroup="ScanPark">Down Method {Server.Migrations.First}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Migrations.Second.Down" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000028.html" LinkGroup="ScanPark">Down Method {Server.Migrations.Second}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.OccurrenceModel.Duration" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000056.html" LinkGroup="ScanPark">Duration Property</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Edit" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000001C_overloads--.html" LinkGroup="ScanPark">Edit Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Edit" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000001D_overloads--.html" LinkGroup="ScanPark">Edit Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.CarController.EditCar" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000011.html" LinkGroup="ScanPark">EditCar Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.LoginViewModel.Email" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000030.html" LinkGroup="ScanPark">Email Property {Server.Models.ViewModels.LoginViewModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.RegisterViewModel.Email" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000033.html" LinkGroup="ScanPark">Email Property {Server.Models.ViewModels.RegisterViewModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.OccurrenceModel.Entrance" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000054.html" LinkGroup="ScanPark">Entrance Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.OccurrenceModel.Exit" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000055.html" LinkGroup="ScanPark">Exit Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Migrations.First" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000023.html" LinkGroup="ScanPark">First Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.FirstName" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000005E.html" LinkGroup="ScanPark">FirstName Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.BillController.GetBills" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000000B.html" LinkGroup="ScanPark">GetBills Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.CarController.GetCars" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000000F.html" LinkGroup="ScanPark">GetCars Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.CarController.GetPlateId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000013.html" LinkGroup="ScanPark">GetPlateId Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.AccountController.Guest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000008.html" LinkGroup="ScanPark">Guest Method {Server.Controllers.AccountController}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Guest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000021.html" LinkGroup="ScanPark">Guest Method {Server.Controllers.ProfileController}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.GuestViewModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000002A.html" LinkGroup="ScanPark">GuestViewModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.HomeController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000014.html" LinkGroup="ScanPark">HomeController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.HomeController.HomeController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000015.html" LinkGroup="ScanPark">HomeController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.IBAN" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000065.html" LinkGroup="ScanPark">IBAN Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.LicencePlateModel.Identifier" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000004E.html" LinkGroup="ScanPark">Identifier Property {Server.Models.LicencePlateModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.GuestViewModel.Identifier" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000002C.html" LinkGroup="ScanPark">Identifier Property {Server.Models.ViewModels.GuestViewModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.AccountController.Index" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000004.html" LinkGroup="ScanPark">Index Method {Server.Controllers.AccountController}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.HomeController.Index" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000016.html" LinkGroup="ScanPark">Index Method {Server.Controllers.HomeController}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Index" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000001A.html" LinkGroup="ScanPark">Index Method {Server.Controllers.ProfileController}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.LastName" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000005F.html" LinkGroup="ScanPark">LastName Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.LicencePlateModel.LicencePlateId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000004C.html" LinkGroup="ScanPark">LicencePlateId Property {Server.Models.LicencePlateModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.OccurrenceModel.LicencePlateId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000052.html" LinkGroup="ScanPark">LicencePlateId Property {Server.Models.OccurrenceModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.LicencePlateModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000004B.html" LinkGroup="ScanPark">LicencePlateModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext.LicencePlates" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000003E.html" LinkGroup="ScanPark">LicencePlates Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.AccountController.Login" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000005.html" LinkGroup="ScanPark">Login Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.LoginViewModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000002F.html" LinkGroup="ScanPark">LoginViewModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.AccountController.Logout" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000006.html" LinkGroup="ScanPark">Logout Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Program.Main" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000069.html" LinkGroup="ScanPark">Main Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.Map" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000020.html" LinkGroup="ScanPark">Map Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredCarModel.Model" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000005C.html" LinkGroup="ScanPark">Model Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.LicencePlateModel.Number" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000004F.html" LinkGroup="ScanPark">Number Property {Server.Models.LicencePlateModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.GuestViewModel.Number" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000002D.html" LinkGroup="ScanPark">Number Property {Server.Models.ViewModels.GuestViewModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.BillModel.OccurenceId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000042.html" LinkGroup="ScanPark">OccurenceId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.OccurrenceModel.OccurrenceId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000051.html" LinkGroup="ScanPark">OccurrenceId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.OccurrenceModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000050.html" LinkGroup="ScanPark">OccurrenceModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext.Occurrences" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000003B.html" LinkGroup="ScanPark">Occurrences Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.GuestViewModel.OneTimePaymentCode" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000002E.html" LinkGroup="ScanPark">OneTimePaymentCode Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.BillModel.Paied" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000044.html" LinkGroup="ScanPark">Paied Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.LoginViewModel.Password" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000031.html" LinkGroup="ScanPark">Password Property {Server.Models.ViewModels.LoginViewModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.RegisterViewModel.Password" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000034.html" LinkGroup="ScanPark">Password Property {Server.Models.ViewModels.RegisterViewModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.BillController.PayBill" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000000C.html" LinkGroup="ScanPark">PayBill Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000018.html" LinkGroup="ScanPark">ProfileController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.ProfileController.ProfileController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000019.html" LinkGroup="ScanPark">ProfileController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Program" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000068.html" LinkGroup="ScanPark">Program Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers.AccountController.Register" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000007.html" LinkGroup="ScanPark">Register Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels.RegisterViewModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000032.html" LinkGroup="ScanPark">RegisterViewModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredCarModel.RegisteredCarId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000058.html" LinkGroup="ScanPark">RegisteredCarId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredCarModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000057.html" LinkGroup="ScanPark">RegisteredCarModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext.RegisteredCars" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000003A.html" LinkGroup="ScanPark">RegisteredCars Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredCarModel.RegisteredLicenceId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000005A.html" LinkGroup="ScanPark">RegisteredLicenceId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredCarModel.RegisteredUserId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000059.html" LinkGroup="ScanPark">RegisteredUserId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000005D.html" LinkGroup="ScanPark">RegisteredUserModel Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ApplicationDbContext.RegisteredUsers" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000039.html" LinkGroup="ScanPark">RegisteredUsers Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="SOLUTION-WIDE PROPERTIES Reference" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000000.html" LinkGroup="ScanPark">SOLUTION-WIDE PROPERTIES Reference</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Migrations.Second" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000026.html" LinkGroup="ScanPark">Second Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000067.html" LinkGroup="ScanPark">Server Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Controllers" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000001.html" LinkGroup="ScanPark">Server.Controllers Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Migrations" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000022.html" LinkGroup="ScanPark">Server.Migrations Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000036.html" LinkGroup="ScanPark">Server.Models Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.ViewModels" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000029.html" LinkGroup="ScanPark">Server.Models.ViewModels Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Startup" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_000000000000006A.html" LinkGroup="ScanPark">Startup Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.CarParkModel.Street" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000048.html" LinkGroup="ScanPark">Street Property {Server.Models.CarParkModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.Street" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000060.html" LinkGroup="ScanPark">Street Property {Server.Models.RegisteredUserModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Migrations.First.Up" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000024.html" LinkGroup="ScanPark">Up Method {Server.Migrations.First}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Migrations.Second.Up" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000027.html" LinkGroup="ScanPark">Up Method {Server.Migrations.Second}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.CarParkModel.ZipCode" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000049.html" LinkGroup="ScanPark">ZipCode Property {Server.Models.CarParkModel}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Server.Models.RegisteredUserModel.ZipCode" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:ScanPark.chm::/topic_0000000000000061.html" LinkGroup="ScanPark">ZipCode Property {Server.Models.RegisteredUserModel}</LItem>
+      </Links>
+   </Context>
+   
+
+</DynamicHelp>
+
